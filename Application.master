@@ -1,0 +1,167 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Application.master.cs" Inherits="Application" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="shortcut icon" href="img/vivalogo.png" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>AbrahamsCourt</title>
+    <%----------------------------------------------- Plugin Start ------------------------------------------%>
+    <!-- J Query -->
+    <script src="assets/JQuery/jquery.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link href="CSS/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+    <!-- Library / Plugin Css Build -->
+    <link href="assets/css/core/libs.min.css" rel="stylesheet" />
+
+    <!-- Aos Animation Css -->
+    <link href="assets/vendor/aos/dist/aos.css" rel="stylesheet" />
+
+
+    <!-- Hope Ui Design System Css -->
+    <link href="assets/css/hope-ui.min.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="assets/css/custom.min.css" rel="stylesheet" />
+
+    <!-- Dark Css -->
+    <link href="assets/css/dark.css" rel="stylesheet" />
+
+    <!-- Customizer Css -->
+    <link href="assets/css/customizer.min.css" rel="stylesheet" />
+
+    <!-- RTL Css -->
+    <link href="assets/css/rtl.min.css" rel="stylesheet" />
+
+    <!-- Notify master Css -->
+    <link href="CSS/notify-master/css/notify.css" rel="stylesheet" />
+
+    <!-- Coustome Made Css from VSS -->
+    <link href="CSS/Switchbtn.css" rel="stylesheet" />
+    <link href="CSS/TableStyle.css" rel="stylesheet" />
+    <link href="CSS/blockselect.css" rel="stylesheet" />
+    <link href="CSS/AppliactiomMaster.css" rel="stylesheet" />
+    <!-- Coustome Made Css MasterPage -->
+
+    <%------------------------------------------------ Plugin End -------------------------------------------%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <!-- loader Start -->
+        <div id="loading">
+            <div class="loader simple-loader">
+                <div class="loader-body"></div>
+            </div>
+        </div>
+        <!-- loader END -->
+        <main class="main-content">
+            <!-- Top Nav Bar -->
+            <div class="position-relative iq-banner">
+                <!--Nav Start-->
+                <nav class="nav navbar navbar-expand-lg navbar-light iq-navbar navs-transparent">
+                    <div class="container-fluid navbar-inner" style="display: none;">
+                        <div class="input-group">
+                            <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0">
+                                <li class="nav-item pe-4">
+                                    <div class="theme-container shadow-dark" data-setting="color-mode" data-name="color" data-value="dark">
+                                        <img class="abc" id="theme-icon" src="img/moon.svg" alt="ERR" />
+                                    </div>
+                                </li>
+                                <li class="nav-item" style="display: none;">
+                                    <div class="btn" data-setting="color-mode" data-name="color" data-value="dark">
+                                        <span id="dark_mode" class="fa fa-moon-o"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Nav Header Component Start -->
+                <div class="iq-navbar-header" style="height: 100px;">
+                    <div class="iq-header-img">
+                        <img src="assets/images/dashboard/top-image-transformed.jpeg" alt="header" class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX" />
+                    </div>
+                </div>
+                <!-- Nav Header Component End -->
+                <!--Nav End-->
+            </div>
+            <!-- Top Nav Bar End -->
+
+            <!-- page content -->
+            <div class="conatiner-fluid content-inner" style="margin-top: -80px !important;">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <!-- page content -->
+
+            <!-- Footer Section Start -->
+            <footer class="footer">
+                <div class="footer-body">
+                    <ul class="left-panel list-inline mb-0 p-0">
+                        <li class="list-inline-item" style="display: none"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item" style="display: none"><a href="#">Terms of Use</a></li>
+                    </ul>
+                    <div class="right-panel">
+                        ©<script>document.write(new Date().getFullYear())</script>
+                        AbrahamsCourt, Made by <a href="#" target="_blank">Chaitanya</a>.
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer Section End -->
+        </main>
+    </form>
+</body>
+<%--------------------------------------------------- JS Plugins Start -------------------------------------%>
+<!-- Library Bundle Script -->
+<script src="assets/js/core/libs.min.js"></script>
+
+<!-- External Library Bundle Script -->
+<script src="assets/js/core/external.min.js"></script>
+
+<!-- Widgetchart Script -->
+<script src="assets/js/charts/widgetcharts.js"></script>
+
+<!-- mapchart Script -->
+<script src="assets/js/charts/vectore-chart.js"></script>
+<script src="assets/js/charts/dashboard.js"></script>
+
+<!-- fslightbox Script -->
+<script src="assets/js/plugins/fslightbox.js"></script>
+
+<!-- Settings Script -->
+<script src="assets/js/plugins/setting.js"></script>
+
+<!-- Slider-tab Script -->
+<script src="assets/js/plugins/slider-tabs.js"></script>
+
+<!-- Form Wizard Script -->
+<script src="assets/js/plugins/form-wizard.js"></script>
+
+<!-- AOS Animation Plugin-->
+<script src="assets/vendor/aos/dist/aos.js"></script>
+
+<!-- App Script -->
+<script src="assets/js/hope-ui.js"></script>
+
+<!-- Notify Master Script -->
+<script src="CSS/notify-master/js/notify.js"></script>
+
+<!-- Validataion Master Script -->
+<script src="JS/Validate.js"></script>
+
+<!-- Master Page JS -->
+<script src="JS/ApplicationMaster.js"></script>
+
+
+<%--------------------------------------------------- JS Plugins End -------------------------------------%>
+</html>

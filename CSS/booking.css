@@ -1,0 +1,102 @@
+﻿
+
+.turf-location {
+    transition: transform 0.3s ease-in-out;
+}
+
+    .turf-location:hover {
+        transform: scale(0.98);
+        cursor: pointer;
+    }
+
+
+
+ul li {
+    margin-bottom: 1.4rem;
+}
+
+.pricing-divider {
+    border-radius: 20px;
+    background: var(--bs-primary);
+    padding: 1em 0 4em;
+    position: relative;
+}
+
+
+.pricing-divider-img {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+}
+
+.deco-layer {
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+}
+
+.btn-custom {
+    background: #C64545;
+    color: #fff;
+    border-radius: 20px
+}
+
+.img-float {
+    width: 50px;
+    position: absolute;
+    top: -3.5rem;
+    right: 1rem
+}
+
+.princing-item {
+    transition: all 150ms ease-out;
+}
+
+    .princing-item:hover {
+        transform: scale(1.05);
+    }
+
+        .princing-item:hover .deco-layer--1 {
+            -webkit-transform: translate3d(15px, 0, 0);
+            transform: translate3d(15px, 0, 0);
+        }
+
+        .princing-item:hover .deco-layer--2 {
+            -webkit-transform: translate3d(-15px, 0, 0);
+            transform: translate3d(-15px, 0, 0);
+        }
+
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Define the animation for hiding an element */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Apply the animation to the element */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.5s ease-in-out forwards;
+}
+
