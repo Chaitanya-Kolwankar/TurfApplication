@@ -277,11 +277,11 @@
     <%-- Modal  --%>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <div class="modal fade" id="Modal_qr" tabindex="-1" role="dialog" aria-labelledby="Modal_qrLabel" aria-hidden="true" data-backdrop="static"  data-keyboard="false">
-                <div class="modal-dialog">
-                    <div class="modal-content transparent-modal">
-                        <asp:UpdatePanel runat="server">
-                            <ContentTemplate>
+            <div class="modal fade" id="Modal_qr" tabindex="-1" aria-labelledby="Modal_qrLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <div class="modal-dialog" style="height:100vh;">
+                            <div class="modal-content transparent-modal">
                                 <div class="modal-body align-content-center flex-container transparent-modal">
                                     <div class="card shadow">
                                         <div class="card-header  border-bottom border-primary border-3">
@@ -298,10 +298,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-                    </div>
-                </div>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

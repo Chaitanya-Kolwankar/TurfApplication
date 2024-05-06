@@ -17,7 +17,7 @@ public partial class booking : System.Web.UI.Page
 
     protected void btn_confrim_Click(object sender, EventArgs e)
     {
-
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "ReloadPage", "$('#Modal_qr').modal('show');", true);
         //string fromMail = "kolwankarchaitanya@gmail.com";
         //string fromPassword = "msrnfhxqkixszgmx";
 
