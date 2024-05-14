@@ -58,30 +58,35 @@ public partial class booking : System.Web.UI.Page
         {
             DataTable dt = cls.fillDataTable("select [dbo].[GenerateIncrementedValue]()");
             string Booking_id = dt.Rows[0][0].ToString().Trim();
-            string qyr = "insert into Turf_details (Booking_id,Name,Phone,Email,Turf_location,Turf_type,Turf_date,Form_time,To_time,Total_time,Total_amount,Adv_amount) values ('" + Booking_id + "','" + name + "'," + Phone + ",'" + Email + "','" + hidden_location.Value.Trim() + "','" + hidden_type.Value.Trim() + "','" + hidden_date.Value.Trim() + "','" + hidden_from_time.Value.Trim() + "','" + hidden_to_time.Value.Trim() + "','" + hidden_total_time.Value.Trim() + "'," + 100 + "," + 100 + ")";
+            double adv_amt = (Convert.ToDouble(hidden_percent.Value.Trim()) / 100) * Convert.ToDouble(hidden_price.Value.Trim());
+            string qyr = "insert into Turf_details (Booking_id,Name,Phone,Email,Turf_location,Turf_type,Turf_date,Form_time,To_time,Total_time,Total_amount,Adv_amount) values ('" + Booking_id + "','" + name + "'," + Phone + ",'" + Email + "','" + hidden_location.Value.Trim() + "','" + hidden_type.Value.Trim() + "','" + hidden_date.Value.Trim() + "','" + hidden_from_time.Value.Trim() + "','" + hidden_to_time.Value.Trim() + "','" + hidden_total_time.Value.Trim() + "'," + hidden_price.Value.Trim() + "," + adv_amt + ")";
+            if (cls.DMLqueries(qyr))
+            {
+                lbl_adv.Text = Convert.ToInt32(adv_amt).ToString() + "Rs";
 
-            cls.DMLqueries(qyr);
+                string fromMail = "kolwankarchaitanya@gmail.com";
+                string fromPassword = "msrnfhxqkixszgmx";
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ReloadPage", "$('#Modal_qr').modal('show');", true);
-            //string fromMail = "kolwankarchaitanya@gmail.com";
-            //string fromPassword = "msrnfhxqkixszgmx";
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress(fromMail);
+                message.Subject = "Turf Booking At Abrahams Court";
+                message.To.Add(new MailAddress("kolwankarchaitanya@gmail.com"));
+                message.Body = "<html> <head> <style> table { font-family: arial, sans-serif; border-collapse: collapse; width: 100%; } td, th { border: 1px solid #dddddd; text-align: left; padding: 8px; } tr:nth-child(even) { background-color: #dddddd; } </style> </head> <link rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css'> <body> <div class='container'> <h2>Booking Id : " + Booking_id + "</h2> <table> <tr> <td>Location</td> <td>" + hidden_location.Value.Trim() + " </td> </tr> <tr> <td>Date</td> <td>" + hidden_date.Value.Trim() + " </td> </tr> <tr> <td>Type</td> <td>" + hidden_type.Value.Trim() + " </td> </tr> <tr> <td>From Time</td> <td>" + hidden_from_time.Value.Trim() + " </td> </tr> <tr> <td>To Time</td> <td>" + hidden_to_time.Value.Trim() + " </td> </tr> <tr> <td>Total Price</td> <td>" + hidden_price.Value.Trim() + " </td> </tr> <tr> <td>Advance Price</td> <td>" + Convert.ToInt32(adv_amt) + " </td> </tr> </table> <br> <div style='text-align:center'><h3> <a  href='#'>Confirm</a> </h3></div> </div> </body> </html>";
+                message.IsBodyHtml = true;
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential(fromMail, fromPassword),
+                    EnableSsl = true,
+                };
+                smtpClient.Send(message);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ReloadPage", "$('#Modal_qr').modal('show');", true);
+            }
+            else
+            {
 
-            //MailMessage message = new MailMessage();
-            //message.From = new MailAddress(fromMail);
-            //message.Subject = "Test Subject";
-            //message.To.Add(new MailAddress("kolwankarchaitanya@gmail.com"));
-            //message.To.Add(new MailAddress(txt_email.Text.Trim()));
-            //message.Body = "<html><body> Test Body </body></html>";
-            //message.IsBodyHtml = true;
+            }
 
-            //var smtpClient = new SmtpClient("smtp.gmail.com")
-            //{
-            //    Port = 587,
-            //    Credentials = new NetworkCredential(fromMail, fromPassword),
-            //    EnableSsl = true,
-            //};
-
-            //smtpClient.Send(message);
         }
     }
 }

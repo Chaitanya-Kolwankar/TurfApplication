@@ -221,6 +221,8 @@
             <div id="user" style="display: none">
                 <div class="row">
                     <div class="card shadow">
+                        <asp:HiddenField ID="hidden_price" runat="server"></asp:HiddenField>
+                        <asp:HiddenField ID="hidden_percent" runat="server" Value="10"></asp:HiddenField>
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-2 mt-lg-0">
                                 <div class="input-group border-bottom border-2 border-primary rounded shadow">
@@ -316,13 +318,25 @@
                                         <div class="card-header  border-bottom border-primary border-3">
                                             <div class="row" style="padding-bottom: 14px;">
                                                 <div class="col-md-12 col-sm-12">
-                                                    <h6 class="p-2">Please confirm Booking By Advance Payment of 500rs</h6>
+                                                    <h6 class="p-2">Please confirm Booking By Advance Payment</h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <div class="row">
+                                            <div class="row text-center">
+                                                <div class="row">
+                                                    <div class="col-1"></div>
+                                                    <div class="col-10">
+                                                        <asp:Label runat="server" ID="lbl_adv" CssClass="form-control text-center m-2 border-bottom border-2 border-primary" Style="font-size: x-large"></asp:Label>
+                                                    </div>
+                                                </div>
                                                 <asp:Image ID="img_qr" ImageUrl="~/img/qrcode_chat.openai.com.png" runat="server" />
+                                                <div class="row">
+                                                    <div class="col-1"></div>
+                                                    <div class="col-10">
+                                                        <asp:Button runat="server" ID="btn_close" CssClass="btn btn-primary form-control m-2" Text="Ok" OnClientClick="location.reload();"></asp:Button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

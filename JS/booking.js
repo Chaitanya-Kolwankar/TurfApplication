@@ -254,6 +254,7 @@ function handletimeClick(label) {
         $('.lbl_price').val(($('.lbl_price').val()) + price);
         $('.lbl_time').val(($('.lbl_time').val()) + ($('.txt_timetotal').val()));
         $('.lbl_totalPrice').val(($('.lbl_totalPrice').val()) + tprice);
+        $('#ContentPlaceHolder1_hidden_price').val(tprice);
         document.getElementById('time').style.display = 'none';
         document.getElementById('user').style.display = 'block';
         document.getElementById('card_tital').innerText = 'Fill Details';
