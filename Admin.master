@@ -359,7 +359,7 @@
                             </i>
                         </div>
                         <div class="input-group search-input ps-1">
-                            <asp:DropDownList ID="ddl_ayid" runat="server" CssClass="form-select shadow" OnSelectedIndexChanged="ddl_ayid_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                            <asp:DropDownList ID="ddl_ayid" runat="server" CssClass="form-select shadow" AutoPostBack="true"></asp:DropDownList>
                         </div>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon">
