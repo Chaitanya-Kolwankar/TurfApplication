@@ -334,7 +334,7 @@
                                                 <div class="row">
                                                     <div class="col-1"></div>
                                                     <div class="col-10">
-                                                        <asp:Button runat="server" ID="btn_close" CssClass="btn btn-primary form-control m-2" Text="Ok" OnClientClick="location.reload();"></asp:Button>
+                                                        <asp:Button runat="server" ID="btn_close" CssClass="btn btn-primary form-control m-2" Text="Ok" OnClientClick="location.reload();" Visible="false"></asp:Button>
                                                     </div>
                                                 </div>
                                             </div>

@@ -80,7 +80,7 @@
                     </div>
                     <div class="row navbar-brand">
                         <h5 class="logo-title">
-                            <asp:Label ID="lbl_clg_name" runat="server" Text="GradeSphere"></asp:Label></h5>
+                            <asp:Label ID="lbl_clg_name" runat="server" Text="AbrahamsCourt"></asp:Label></h5>
                     </div>
                 </div>
                 <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
@@ -102,231 +102,20 @@
                                 <span class="mini-icon">-</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-profile" role="button" aria-expanded="false" aria-controls="sidebar-special">
-                                <i class="icon">
-                                    <i class="fa fa-lg fa-user-plus"></i>
-                                </i>
-                                <span class="item-name">Profile</span>
-                                <i class="right-icon">
-                                    <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </i>
-                            </a>
-                            <ul class="sub-nav collapse" id="sidebar-profile" data-bs-parent="#sidebar-menu">
-                                <li class="nav-item" id="create_user" runat="server" visible="true">
-                                    <a class="nav-link " href="#">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Create User</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="role_master" runat="server" visible="true">
-                                    <a class="nav-link " href="#">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Role Master</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="change_Password" runat="server" visible="true">
-                                    <a class="nav-link " href="Change_password.aspx">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Change Password</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="college_details" runat="server" visible="true">
-                                    <a class="nav-link " href="frm_college_details.aspx">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">College Details</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-master" role="button" aria-expanded="false" aria-controls="sidebar-special">
-                                <i class="icon">
-                                    <i class="fa fa-lg fa-graduation-cap"></i>
-                                </i>
-                                <span class="item-name">Master</span>
-                                <i class="right-icon">
-                                    <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </i>
-                            </a>
-                            <ul class="sub-nav collapse" id="sidebar-master" data-bs-parent="#sidebar-menu">
-                                <li class="nav-item" id="student_master" runat="server" visible="true">
-                                    <a class="nav-link " href="frm_StudentMaster.aspx">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Student Master</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="subject_master" runat="server" visible="true">
-                                    <a class="nav-link " href="frm_subject_master.aspx">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Subject Master</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="group_master" runat="server" visible="true">
-                                    <a class="nav-link " href="Group_master.aspx">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Group Master</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="exam_master" runat="server" visible="true">
-                                    <a class="nav-link " href="frm_exam_master.aspx">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Exam Master</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-examconduct" role="button" aria-expanded="false" aria-controls="sidebar-special">
-                                <i class="icon">
-                                    <i class="fa fa-lg fa-check-square-o"></i>
-                                </i>
-                                <span class="item-name">Exam Conduct</span>
-                                <i class="right-icon">
-                                    <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </i>
-                            </a>
-                            <ul class="sub-nav collapse" id="sidebar-examconduct" data-bs-parent="#sidebar-menu">
-                                <li class="nav-item" id="regular_exam" runat="server" visible="true">
-                                    <a class="nav-link " href="#">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Regular Exam Assign</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="re_exam" runat="server" visible="true">
-                                    <a class="nav-link " href="#">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">ATKT/Reval Exam Assign</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="assign_seatno" runat="server" visible="true">
-                                    <a class="nav-link " href="#">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Assign Seat No</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-entry" role="button" aria-expanded="false" aria-controls="sidebar-special">
-                                <i class="icon">
-                                    <i class="fa fa-lg fa-file-text"></i>
-                                </i>
-                                <span class="item-name">Entry</span>
-                                <i class="right-icon">
-                                    <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </i>
-                            </a>
-                            <ul class="sub-nav collapse" id="sidebar-entry" data-bs-parent="#sidebar-menu">
-                                <li class="nav-item" id="marks_entry" runat="server" visible="true">
-                                    <a class="nav-link " href="frm_marks_entry.aspx">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Marks Entry</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="overall_marks_entery" runat="server" visible="true">
-                                    <a class="nav-link " href="frm_overall_mrks_entry.aspx">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Overall Marks Entry</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="overall_eligibility" runat="server" visible="true">
-                                    <a class="nav-link " href="#">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Overall Eligibility</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#sidebar-report" role="button" aria-expanded="false" aria-controls="sidebar-special">
-                                <i class="icon">
-                                    <i class="fa fa-lg fa-pie-chart"></i>
-                                </i>
-                                <span class="item-name">Report</span>
-                                <i class="right-icon">
-                                    <svg class="icon-18" xmlns="http://www.w3.org/2000/svg" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </i>
-                            </a>
-                            <ul class="sub-nav collapse" id="sidebar-report" data-bs-parent="#sidebar-menu">
-                                <li class="nav-item" id="hall_ticket" runat="server" visible="true">
-                                    <a class="nav-link " href="#">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Hall Ticket</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="gazette" runat="server" visible="true">
-                                    <a class="nav-link " href="#">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Gazette</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="report_card" runat="server" visible="true">
-                                    <a class="nav-link " href="#">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Report Card</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" id="statistic_report" runat="server" visible="true">
-                                    <a class="nav-link " href="#">
-                                        <i class="icon">
-                                            <i style="font-size: 10px" class="fa fa-circle"></i>
-                                        </i>
-                                        <span class="item-name">Statistic Report</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                         <li class="nav-item" id="academic_transfer" runat="server" visible="true">
                             <a class="nav-link" data-bs-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="sidebar-special">
                                 <i class="icon">
-                                    <i class="fa fa-lg fa-exchange"></i>
+                                    <i class="fa fa-lg fa-home"></i>
                                 </i>
-                                <span class="item-name">Academic Transfer</span>
+                                <span class="item-name">Admin</span>
+                            </a>
+                        </li>
+                        <li class="nav-item" id="Li1" runat="server" visible="true">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="sidebar-special">
+                                <i class="icon">
+                                    <i class="fa fa-lg fa-bookmark"></i>
+                                </i>
+                                <span class="item-name">Booking</span>
                             </a>
                         </li>
                         <li>
@@ -358,18 +147,18 @@
                                 </svg>
                             </i>
                         </div>
-                        <div class="input-group search-input ps-1">
+                        <div class="input-group search-input ps-1" style="visibility: hidden;">
                             <asp:DropDownList ID="ddl_ayid" runat="server" CssClass="form-select shadow" AutoPostBack="true"></asp:DropDownList>
                         </div>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="visibility: hidden;">
                             <span class="navbar-toggler-icon">
                                 <span class="mt-2 navbar-toggler-bar bar1"></span>
                                 <span class="navbar-toggler-bar bar2"></span>
                                 <span class="navbar-toggler-bar bar3"></span>
                             </span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="visibility: hidden;">
+                            <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0" style="visibility: hidden;">
                                 <li class="nav-item pe-4">
                                     <div class="theme-container shadow-dark" data-setting="color-mode" data-name="color" data-value="dark">
                                         <img class="abc" id="theme-icon" src="img/moon.svg" alt="ERR" />
@@ -388,9 +177,9 @@
                     </div>
                 </nav>
                 <!-- Nav Header Component Start -->
-                <div class="iq-navbar-header" style="height: 56px;">
+                <div class="iq-navbar-header" style="height: 66px;">
                     <div class="iq-header-img">
-                        <img src="assets/images/dashboard/top-header.png" alt="header" class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX" />
+                        <img src="assets/images/dashboard/top-image-transformed.jpeg" alt="header" class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX" />
                     </div>
                 </div>
                 <!-- Nav Header Component End -->
@@ -399,7 +188,7 @@
             <!-- Top Nav Bar End -->
 
             <!-- page content -->
-            <div class="conatiner-fluid content-inner" style="padding-top: 2%;">
+            <div class="conatiner-fluid content-inner" style="margin-top: -60px !important;">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
@@ -417,44 +206,11 @@
                     </div>
                     <div class="right-panel">
                         ©<script>document.write(new Date().getFullYear())</script>
-                        GradeSphere, Made by <a href="http://vssdevelopers.com" target="_blank">VSS</a>.
+                        GradeSphere, Made by <a href="#" target="_blank">Chaitanya</a>.
                     </div>
                 </div>
             </footer>
             <!-- Footer Section End -->
-
-             <%-- Modal for BackUp Button --%>
-            <div class="modal fade" id="Modal_backup" tabindex="-1" role="dialog" aria-labelledby="initialModalLabel" aria-hidden="true" data-backdrop="static">
-                <div class="modal-dialog">
-                    <div class="modal-content transparent-modal">
-                        <div class="modal-body align-content-center flex-container transparent-modal">
-                            <div class="card shadow">
-                                <div class="card-header  border-bottom border-primary border-3">
-                                    <div class="row" style="padding-bottom: 14px;">
-                                        <div class="col-md-12 col-sm-12">
-                                            <h5 class="p-2">Please confirm the backup for 
-                                                <script>document.write((new Date().getDate()) + '/' + (new Date().getMonth() + 1) + '/' + (new Date().getFullYear()))</script>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6 col-xs-12"></div>
-                                        <div class="col-md-3 col-sm-3 col-xs-3" style="text-align: right">
-                                            <asp:Label ID="btn_yes" CssClass="btn btn-primary" runat="server" Text="Yes" />
-                                        </div>
-                                        <div class="col-md-3 col- col-sm-3 col-xs-3" style="">
-                                            <asp:Label ID="lbl_no" runat="server" CssClass="btn btn-gray" Text="No" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <%-- Modal for BackUp Button --%>
         </main>
     </form>
 </body>

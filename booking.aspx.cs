@@ -62,6 +62,7 @@ public partial class booking : System.Web.UI.Page
             string qyr = "insert into Turf_details (Booking_id,Name,Phone,Email,Turf_location,Turf_type,Turf_date,Form_time,To_time,Total_time,Total_amount,Adv_amount) values ('" + Booking_id + "','" + name + "'," + Phone + ",'" + Email + "','" + hidden_location.Value.Trim() + "','" + hidden_type.Value.Trim() + "','" + hidden_date.Value.Trim() + "','" + hidden_from_time.Value.Trim() + "','" + hidden_to_time.Value.Trim() + "','" + hidden_total_time.Value.Trim() + "'," + hidden_price.Value.Trim() + "," + adv_amt + ")";
             if (cls.DMLqueries(qyr))
             {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ReloadPage", "$('#Modal_qr').modal('show');", true);
                 lbl_adv.Text = Convert.ToInt32(adv_amt).ToString() + "Rs";
 
                 string fromMail = "kolwankarchaitanya@gmail.com";
@@ -80,13 +81,12 @@ public partial class booking : System.Web.UI.Page
                     EnableSsl = true,
                 };
                 smtpClient.Send(message);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "ReloadPage", "$('#Modal_qr').modal('show');", true);
+                btn_close.Visible = true;
             }
             else
             {
-
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
             }
-
         }
     }
 }
