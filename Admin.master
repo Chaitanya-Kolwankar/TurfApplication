@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>GradeSphere</title>
+    <title>Abrahamscourt | Admin</title>
     <%----------------------------------------------- Plugin Start ------------------------------------------%>
     <!-- J Query -->
     <script src="assets/JQuery/jquery.min.js"></script>
@@ -202,11 +202,11 @@
                         <li class="list-inline-item"><a href="#">Terms of Use</a></li>
                     </ul>
                     <div class="row">
-                        <asp:Label ID="lbl_user" runat="server" Text="loggined as Default"></asp:Label>
+                        <asp:Label ID="lbl_user" runat="server" Text="loggined as Admin"></asp:Label>
                     </div>
                     <div class="right-panel">
                         ©<script>document.write(new Date().getFullYear())</script>
-                        GradeSphere, Made by <a href="#" target="_blank">Chaitanya</a>.
+                        Abrahamscourt , Made by <a href="#" target="_blank">Chaitanya</a>.
                     </div>
                 </div>
             </footer>

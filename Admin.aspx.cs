@@ -13,16 +13,16 @@ public partial class Admin : System.Web.UI.Page
     Class1 cls = new Class1();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Convert.ToString(Session["username"]) != "")
         {
-            if (Convert.ToString(Session["user"]) != "#" && Convert.ToString(Session["clg_code"]) != "#")
+            if (!IsPostBack)
             {
                 dataonpageload();
             }
-            else
-            {
-                Response.Redirect("login.aspx");
-            }
+        }
+        else
+        {
+            Response.Redirect("login.aspx");
         }
     }
 
@@ -100,7 +100,7 @@ public partial class Admin : System.Web.UI.Page
         {
             ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Enter Advance Percentage', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
         }
-        else if(Convert.ToInt32(adv) > 100)
+        else if (Convert.ToInt32(adv) > 100)
         {
             ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Advance Is In Percentage Cannot Be More Than 100', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
         }
