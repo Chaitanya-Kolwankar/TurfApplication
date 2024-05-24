@@ -55,7 +55,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-         <!-- loader Start -->
+        <!-- loader Start -->
         <div id="loading" style="display: none">
             <div class="loader simple-loader">
                 <div class="loader-body"></div>
@@ -102,20 +102,26 @@
                                 <span class="mini-icon">-</span>
                             </a>
                         </li>
-                        <li class="nav-item" id="academic_transfer" runat="server" visible="true">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="sidebar-special">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Admin.aspx">
                                 <i class="icon">
                                     <i class="fa fa-lg fa-home"></i>
                                 </i>
-                                <span class="item-name">Admin</span>
+                                <i class="sidenav-mini-icon" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Admin">
+                                    <i class="fa fa-lg fa-home"></i>
+                                </i>
+                                <sp an class="item-name">Admin</sp>
                             </a>
                         </li>
-                        <li class="nav-item" id="Li1" runat="server" visible="true">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="sidebar-special">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Admin_booking.aspx">
                                 <i class="icon">
                                     <i class="fa fa-lg fa-bookmark"></i>
                                 </i>
-                                <span class="item-name">Booking</span>
+                                <i class="sidenav-mini-icon" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Booking">
+                                    <i class="fa fa-lg fa-bookmark"></i>
+                                </i>
+                                <sp an class="item-name">Booking</sp>
                             </a>
                         </li>
                         <li>

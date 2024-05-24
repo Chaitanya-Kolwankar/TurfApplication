@@ -15,6 +15,10 @@
             .clicklable:hover {
                 transform: scale(1.1);
             }
+
+        .modal {
+            --bs-modal-width: 1000px !important;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -34,8 +38,11 @@
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-2">
                             <asp:TextBox ID="txt_date" runat="server" TextMode="Date" MaxLength="10" class="form-control" autocomplete="off"></asp:TextBox>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-2">
+                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 mt-2">
                             <asp:Button runat="server" ID="btn_data" CssClass="btn btn-block btn-primary form-control" Text="Get Booking" OnClick="btn_data_Click" />
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 mt-2">
+                            <asp:Button runat="server" ID="btn_add" CssClass="btn btn-block btn-info form-control" Text="Add Booking" OnClientClick="$('#Modal_add').modal('show');" />
                         </div>
                     </div>
                     <br />
@@ -44,7 +51,7 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="Booking ID">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_id" runat="server"  CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Booking_id") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_id" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Booking_id") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Name">
@@ -116,6 +123,85 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+
+    <%-- Modal  --%>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class="modal fade" id="Modal_add" tabindex="-1" aria-labelledby="Modal_qrLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <div class="modal-dialog" style="height: 94vh;">
+                            <div class="modal-content transparent-modal">
+                                <div class="modal-body align-content-center flex-container transparent-modal">
+                                    <div class="card shadow w-100">
+                                        <div class="card-header  border-bottom border-primary border-3">
+                                            <div class="row" style="padding-bottom: 14px;">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <h4>Add Booking</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                                    <asp:TextBox ID="txt_Bk_id" runat="server" Placeholder="Booking ID" class="form-control" ReadOnly="true" autocomplete="off"></asp:TextBox>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                                    <asp:DropDownList ID="ddl_location" runat="server" CssClass="form-select shadow" AutoPostBack="true">
+                                                        <asp:ListItem Text="Select Location" Value=""></asp:ListItem>
+                                                        <asp:ListItem Text="Vatar" Value="Vatar"></asp:ListItem>
+                                                        <asp:ListItem Text="Sopara" Value="Sopara"></asp:ListItem>
+                                                        <asp:ListItem Text="East" Value="East"></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                                    <asp:DropDownList ID="ddl_type" runat="server" CssClass="form-select shadow" AutoPostBack="true">
+                                                        <asp:ListItem Text="Select Type" Value=""></asp:ListItem>
+                                                        <asp:ListItem Text="Full" Value="Full"></asp:ListItem>
+                                                        <asp:ListItem Text="Open" Value="Open"></asp:ListItem>
+                                                        <asp:ListItem Text="Box" Value="Box"></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                                    <asp:TextBox ID="txt_bk_date" runat="server" TextMode="Date" MaxLength="10" class="form-control" autocomplete="off"></asp:TextBox>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                                    <asp:TextBox ID="txt_from_time" runat="server" MaxLength="5" Placeholder="From Time" class="form-control" autocomplete="off" ></asp:TextBox>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                                    <asp:TextBox ID="txt_to_time" runat="server"  MaxLength="5" Placeholder="To Time" class="form-control" autocomplete="off"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                                    <asp:TextBox ID="txt_adv_amt" runat="server" MaxLength="10" Placeholder="Advance" class="form-control" autocomplete="off"></asp:TextBox>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                                    <asp:TextBox ID="txt_amt" runat="server" MaxLength="10" Placeholder="Total Amount" class="form-control" autocomplete="off"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 mt-2"></div>
+                                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                                    <asp:Button runat="server" ID="btn_save" CssClass="btn btn-block btn-info form-control" Text="Get Booking" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <%-- Modal  --%>
     <script>
         var prm = Sys.WebForms.PageRequestManager.getInstance();
         prm.add_endRequest(function () {

@@ -38,11 +38,15 @@ public partial class Admin_booking : System.Web.UI.Page
     {
         string qry = "select *,convert(varchar,Turf_date,103) Date From turf_details where Turf_date=convert(varchar,'" + txt_date.Text.Trim() + "',103) and del_flag=0";
         DataTable dt = cls.fillDataTable(qry);
-        grd_data.DataSource = dt;
-        grd_data.DataBind();
         if (grd_data.Rows.Count > 0)
         {
+            grd_data.DataSource = dt;
+            grd_data.DataBind();
             grd_data.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+        else
+        {
+            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('No Data Found', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
         }
     }
 

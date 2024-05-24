@@ -45,7 +45,7 @@ public partial class Login : System.Web.UI.Page
                     if (id_chk.Rows[0]["password"].ToString() == password && id_chk.Rows[0]["username"].ToString() == username)
                     {
                         Session["username"] = username;
-                        Response.Redirect("Admin.aspx");
+                        Response.Redirect("Admin_booking.aspx");
                     }
                     else
                     {
