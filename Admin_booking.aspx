@@ -36,10 +36,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-2">
-                            <asp:TextBox ID="txt_date" runat="server" TextMode="Date" MaxLength="10" class="form-control" autocomplete="off"></asp:TextBox>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 mt-2">
-                            <asp:Button runat="server" ID="btn_data" CssClass="btn btn-block btn-primary form-control" Text="Get Booking" OnClick="btn_data_Click" />
+                            <asp:TextBox ID="txt_date" runat="server" TextMode="Date" MaxLength="10" class="form-control" autocomplete="off" OnTextChanged="txt_date_TextChanged" AutoPostBack="true"></asp:TextBox>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 mt-2">
                             <asp:Button runat="server" ID="btn_add" CssClass="btn btn-block btn-info form-control" Text="Add Booking" OnClientClick="$('#Modal_add').modal('show');" />
@@ -169,10 +166,10 @@
                                                     <asp:TextBox ID="txt_bk_date" runat="server" TextMode="Date" MaxLength="10" class="form-control" autocomplete="off"></asp:TextBox>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                                    <asp:TextBox ID="txt_from_time" runat="server" MaxLength="5" Placeholder="From Time" class="form-control" autocomplete="off" ></asp:TextBox>
+                                                    <asp:TextBox ID="txt_from_time" runat="server" MaxLength="5" Placeholder="From Time" class="form-control" autocomplete="off"></asp:TextBox>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                                    <asp:TextBox ID="txt_to_time" runat="server"  MaxLength="5" Placeholder="To Time" class="form-control" autocomplete="off"></asp:TextBox>
+                                                    <asp:TextBox ID="txt_to_time" runat="server" MaxLength="5" Placeholder="To Time" class="form-control" autocomplete="off"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <br />
