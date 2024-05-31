@@ -47,12 +47,15 @@
     <link href="CSS/Switchbtn.css" rel="stylesheet" />
     <link href="CSS/TableStyle.css" rel="stylesheet" />
     <link href="CSS/AppliactiomMaster.css" rel="stylesheet" />
+    <!-- Bootstrap Datetimepicker CSS CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <!-- Coustome Made Css MasterPage -->
 
     <%------------------------------------------------ Plugin End -------------------------------------------%>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
+
 <body>
     <form id="form1" runat="server">
         <!-- loader Start -->
@@ -257,9 +260,11 @@
 
 <!-- Validataion Master Script -->
 <script src="JS/Validate.js"></script>
-
 <!-- Master Page JS -->
 <script src="JS/ApplicationMaster.js"></script>
+<!-- Moment.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
 <%--------------------------------------------------- JS Plugins End -------------------------------------%>
 </html>

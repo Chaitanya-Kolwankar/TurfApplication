@@ -48,7 +48,7 @@ public partial class Admin_booking : System.Web.UI.Page
         {
             grd_data.DataSource = null;
             grd_data.DataBind();
-            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('No Data Found', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
+            //ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('No Data Found', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
         }
     }
 
