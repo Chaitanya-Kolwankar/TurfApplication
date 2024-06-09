@@ -11,8 +11,7 @@
     }
 
 .shadow-dark .abc {
-    filter: drop-shadow(3px 3px 2px rgb(255 255 255)) ;
-
+    filter: drop-shadow(3px 3px 2px rgb(255 255 255));
 }
 
 .shadow-light .abc {
@@ -33,4 +32,9 @@
     animation-name: change;
     animation-duration: 1s;
     animation-direction: alternate;
+}
+
+.transparent-modal {
+    background-color: transparent !important;
+    border: 0px;
 }
