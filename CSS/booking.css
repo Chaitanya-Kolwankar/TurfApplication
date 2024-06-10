@@ -100,3 +100,8 @@ ul li {
     animation: fadeOut 0.5s ease-in-out forwards;
 }
 
+
+.transparent-modal {
+    background-color: transparent !important;
+    border: 0px;
+}

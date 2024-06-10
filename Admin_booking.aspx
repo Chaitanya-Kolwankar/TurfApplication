@@ -148,7 +148,7 @@
                                             <asp:TextBox ID="txt_Bk_id" runat="server" Placeholder="Booking ID" class="form-control" ReadOnly="true" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                            <asp:DropDownList ID="ddl_location" runat="server" CssClass="form-select shadow" AutoPostBack="true">
+                                            <asp:DropDownList ID="ddl_location" runat="server" CssClass="form-select shadow">
                                                 <asp:ListItem Text="Select Location" Value=""></asp:ListItem>
                                                 <asp:ListItem Text="Vatar" Value="Vatar"></asp:ListItem>
                                                 <asp:ListItem Text="Sopara" Value="Sopara"></asp:ListItem>
@@ -156,7 +156,7 @@
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                            <asp:DropDownList ID="ddl_type" runat="server" CssClass="form-select shadow" AutoPostBack="true">
+                                            <asp:DropDownList ID="ddl_type" runat="server" CssClass="form-select shadow">
                                                 <asp:ListItem Text="Select Type" Value=""></asp:ListItem>
                                                 <asp:ListItem Text="Full" Value="Full"></asp:ListItem>
                                                 <asp:ListItem Text="Open" Value="Open"></asp:ListItem>
@@ -170,10 +170,10 @@
                                             <asp:TextBox ID="txt_bk_date" runat="server" TextMode="Date" MaxLength="10" class="form-control date_flatpicker" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                            <asp:TextBox ID="txt_from_time" runat="server" Placeholder="From Time" class="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_from_time" runat="server" MaxLength="5" Placeholder="From Time" class="form-control"></asp:TextBox>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                            <asp:TextBox ID="txt_to_time" runat="server" MaxLength="5" Placeholder="To Time" class="form-control" autocomplete="off"></asp:TextBox>
+                                            <asp:TextBox ID="txt_to_time" runat="server" MaxLength="5" Placeholder="To Time" class="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <br />
@@ -184,12 +184,19 @@
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
                                             <asp:TextBox ID="txt_amt" runat="server" MaxLength="10" Placeholder="Total Amount" class="form-control" autocomplete="off"></asp:TextBox>
                                         </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                            <asp:DropDownList ID="ddl_status" runat="server" CssClass="form-select shadow">
+                                                <asp:ListItem Text="Select Status" Value=""></asp:ListItem>
+                                                <asp:ListItem Text="Confirm" Value="1"></asp:ListItem>
+                                                <asp:ListItem Text="Cancel" Value="0"></asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
                                     </div>
                                     <br />
                                     <div class="row">
                                         <div class="col-lg-4 col-md-3 col-sm-12 col-xs-12 mt-2"></div>
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                            <asp:Button runat="server" ID="btn_save" CssClass="btn btn-block btn-info form-control" Text="Save Booking" />
+                                            <asp:Button runat="server" ID="btn_save" CssClass="btn btn-block btn-info form-control" Text="Save Booking" OnClick="btn_save_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -236,7 +243,8 @@
         clickable();
 
         function loadtimepicker() {
-            $('#<%= txt_from_time.ClientID %>').timepicker();
+            $('#<%= txt_from_time.ClientID %>').timepicker({ timeFormat: 'H:i', step: 30 });
+            $('#<%= txt_to_time.ClientID %>').timepicker({ timeFormat: 'H:i', step: 30 });
         }
     </script>
 
