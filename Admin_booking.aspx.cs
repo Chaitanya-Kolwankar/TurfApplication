@@ -116,9 +116,14 @@ public partial class Admin_booking : System.Web.UI.Page
         {
             DataTable dt = cls.fillDataTable("select [dbo].[GenerateIncrementedValue]()");
             string Booking_id = dt.Rows[0][0].ToString().Trim();
-            string qyr = "insert into Turf_details (Booking_id,Turf_location,Turf_type,Turf_date,Form_time,To_time,Total_time,Total_amount,Adv_amount) values ('" + Booking_id + "','" + hidden_location.Value.Trim() + "','" + hidden_type.Value.Trim() + "','" + hidden_date.Value.Trim() + "','" + hidden_from_time.Value.Trim() + "','" + hidden_to_time.Value.Trim() + "','" + hidden_total_time.Value.Trim() + "'," + hidden_price.Value.Trim() + "," + adv_amt + ")";
+            string qyr = "insert into Turf_details (Booking_id,Turf_location,Turf_type,Turf_date,Form_time,To_time,Total_time,Total_amount,Adv_amount) values ('" + Booking_id + "','" + location + "','" + type + "','" + date + "','" + from_time + "','" + to_time + "','" + to_time + "'," + amount + "," + Advance + ")";
             if (cls.DMLqueries(qyr))
             {
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Booking Details Saved Successfully', { color: '#006600', background: '#ccffcc', blur: 0.2, delay: 0 });", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
             }
         }
     }

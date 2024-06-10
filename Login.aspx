@@ -11,7 +11,7 @@
     <meta name="author" content="VSS" />
 
     <title>Abrahamscourt | Login</title>
-    <link rel="icon" href="img/vivalogo.png" />
+    <link rel="icon" href="img/Abrahamscourt_logo.png" />
 
     <!-- Custom fonts for this template-->
     <link href="vendors/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -49,7 +49,7 @@
                             <div class="card-body p-0 bg-transparent">
                                 <div class="p-5">
                                     <div class="adjust_img">
-                                        <img src="img/vivalogo.png" height="100" width="100" draggable="false" alt="backgroundimage" />
+                                        <img src="img/Abrahamscourt_logo.png" height="100" width="100" draggable="false" alt="backgroundimage" />
                                     </div>
                                     <h4 style="color: white">Abrahamscourt Login</h4>
                                     <hr class="sidebar-divider my-0" style="background-color: #3b5998" />
