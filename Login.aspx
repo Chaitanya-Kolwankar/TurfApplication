@@ -27,7 +27,7 @@
     <link href="CSS/blockselect.css" rel="stylesheet" />
     <style>
         .bg-img {
-            background-image: url('assets/images/auth/01.png');
+            background-image: url('assets/images/dashboard/top-image-transformed.jpeg');
             background-size: cover;
             background-position: center;
             text-align: center;
