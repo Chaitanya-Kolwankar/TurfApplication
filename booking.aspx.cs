@@ -9,6 +9,8 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Data;
+using System.Web.Services;
+using Newtonsoft.Json.Linq;
 
 public partial class booking : System.Web.UI.Page
 {
@@ -88,5 +90,12 @@ public partial class booking : System.Web.UI.Page
                 ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
             }
         }
+    }
+
+    [WebMethod]
+    public static string get_type_price(string turf_location)
+    {
+        Class1 cls = new Class1();
+        return cls.get_type_price(turf_location);
     }
 }

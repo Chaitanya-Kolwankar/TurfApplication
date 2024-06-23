@@ -2,14 +2,43 @@
     if (event.target.tagName.toLowerCase() === 'a') {
         event.stopPropagation();
     } else {
-        document.getElementById('location').classList.remove('fade-in');
-        document.getElementById('location').classList.add('fade-out');
-        setTimeout(function () {
-            document.getElementById('location').style.display = 'none';
-            document.getElementById('type').style.display = 'block';
-            document.getElementById('card_tital').innerText = 'Select Turf Type';
-        }, 500);
-        $('#ContentPlaceHolder1_hidden_location').val(event.currentTarget.id);
+        $.ajax({
+            type: "POST",
+            url: "booking.aspx/get_type_price",
+            data: '{turf_location:"' + event.currentTarget.id + '"}',
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            success: function (response) {
+                if (response.d != 'error') {
+                    var data = JSON.parse(response.d);
+                    if (data.length > 0) {
+
+                        var row = data[0];
+                        $('.lbl_full_court').text(row.Full_price);
+                        $('.lbl_open_court').text(row.Open_price);
+                        $('.lbl_box_court').text(row.Box_price);
+                        $('#ContentPlaceHolder1_hidden_full').val(row.Full_price);
+                        $('#ContentPlaceHolder1_hidden_open').val(row.Open_price);
+                        $('#ContentPlaceHolder1_hidden_box').val(row.Box_price);
+                        $('#ContentPlaceHolder1_hidden_percent').val(row.Adv_price);
+
+                        document.getElementById('location').classList.remove('fade-in');
+                        document.getElementById('location').classList.add('fade-out');
+                        setTimeout(function () {
+                            document.getElementById('location').style.display = 'none';
+                            document.getElementById('type').style.display = 'block';
+                            document.getElementById('card_tital').innerText = 'Select Turf Type';
+                        }, 500);
+                        $('#ContentPlaceHolder1_hidden_location').val(event.currentTarget.id);
+                    }
+                } else {
+                    $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
+                }
+            },
+            error: function (error) {
+                $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
+            }
+        });
     }
 });
 

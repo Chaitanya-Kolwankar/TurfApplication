@@ -21,7 +21,7 @@
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/turf.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="vatar">
+                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/turf.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="Vatar">
                                     <div class="card-body">
                                         <div style="height: 26vh;"></div>
                                     </div>
@@ -66,10 +66,10 @@
                             <div class="container-fluid">
                                 <div class="row m-auto text-center">
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                        <asp:HiddenField ID="hidden_full" runat="server" Value="250"></asp:HiddenField>
-                                        <div class="princing-item" id="full">
+                                        <asp:HiddenField ID="hidden_full" runat="server"></asp:HiddenField>
+                                        <div class="princing-item" id="Full">
                                             <div class="pricing-divider">
-                                                <h4 class="my-0 display-2 text-white font-weight-normal mb-3"><span class="h3 text-white">₹</span><asp:Label ID="lbl_full_court" runat="server" Text="250"></asp:Label>
+                                                <h4 class="my-0 display-2 text-white font-weight-normal mb-3"><span class="h3 text-white">₹</span><asp:Label ID="lbl_full_court" runat="server" CssClass="lbl_full_court"></asp:Label>
                                                     <span class="h5 text-white" style="margin-left: -4%;">/Hour</span></h4>
                                                 <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
                                                     <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z'
@@ -92,10 +92,10 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                        <asp:HiddenField ID="hidden_open" runat="server" Value="150"></asp:HiddenField>
-                                        <div class="princing-item" id="open">
+                                        <asp:HiddenField ID="hidden_open" runat="server"></asp:HiddenField>
+                                        <div class="princing-item" id="Open">
                                             <div class="pricing-divider ">
-                                                <h4 class="my-0 display-2 text-white font-weight-normal mb-3"><span class="h3 text-white">₹</span><asp:Label ID="lbl_open_court" runat="server" Text="150"></asp:Label><span class="h5 text-white">/Hour</span></h4>
+                                                <h4 class="my-0 display-2 text-white font-weight-normal mb-3"><span class="h3 text-white">₹</span><asp:Label ID="lbl_open_court" runat="server" CssClass="lbl_open_court"></asp:Label><span class="h5 text-white">/Hour</span></h4>
                                                 <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_3' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
                                                     <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z'
                                                         fill='#FFFFFF' opacity='0.6'>
@@ -116,11 +116,11 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                        <asp:HiddenField ID="hidden_box" runat="server" Value="100"></asp:HiddenField>
-                                        <div class="princing-item" id="box">
+                                        <asp:HiddenField ID="hidden_box" runat="server"></asp:HiddenField>
+                                        <div class="princing-item" id="Box">
                                             <div class="pricing-divider ">
                                                 <h4 class="my-0 display-2 text-white font-weight-normal mb-3"><span class="h3 text-white" style="margin-right: -4%;">₹</span>
-                                                    <asp:Label ID="lbl_box_court" runat="server" Text="100"></asp:Label>
+                                                    <asp:Label ID="lbl_box_court" CssClass="lbl_box_court" runat="server"></asp:Label>
                                                     <span class="h5 text-white" style="margin-left: -4%;">/Hour</span></h4>
                                                 <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_2' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
                                                     <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'>
@@ -222,7 +222,7 @@
                 <div class="row">
                     <div class="card shadow">
                         <asp:HiddenField ID="hidden_price" runat="server"></asp:HiddenField>
-                        <asp:HiddenField ID="hidden_percent" runat="server" Value="10"></asp:HiddenField>
+                        <asp:HiddenField ID="hidden_percent" runat="server"></asp:HiddenField>
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-2 mt-lg-0">
                                 <div class="input-group border-bottom border-2 border-primary rounded shadow">
