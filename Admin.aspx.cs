@@ -17,63 +17,11 @@ public partial class Admin : System.Web.UI.Page
         {
             if (!IsPostBack)
             {
-                dataonpageload();
             }
         }
         else
         {
             Response.Redirect("login.aspx");
-        }
-    }
-
-    public void dataonpageload()
-    {
-        DataTable dt = cls.fillDataTable("select * from admin_tbl");
-        if (dt.Rows.Count > 0)
-        {
-            txt_full.Text = dt.Rows[0]["Full_price"].ToString();
-            txt_open.Text = dt.Rows[0]["Open_price"].ToString();
-            txt_box.Text = dt.Rows[0]["Box_price"].ToString();
-            txt_adv.Text = dt.Rows[0]["Adv_price"].ToString();
-            if (dt.Rows[0]["Qr_code"].ToString() != "")
-            {
-                byte[] imageBytes = (byte[])dt.Rows[0]["Qr_code"];
-                string base64Image = Convert.ToBase64String(imageBytes);
-                string imageUrl = "data:image/jpeg;base64," + base64Image;
-                Image1.Style["display"] = "";
-                Image1.ImageUrl = imageUrl;
-                hidden_img.Value = base64Image;
-            }
-            else
-            {
-                Image1.ImageUrl = null;
-                Image1.Style["display"] = "none";
-                btn_imgdelete.Style["display"] = "none";
-                hidden_img.Value = null;
-            }
-        }
-        else
-        {
-            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
-        }
-    }
-
-    protected void btn_edit_Click(object sender, EventArgs e)
-    {
-        if (btn_edit.Text == "Edit")
-        {
-            txt_full.Enabled = true;
-            txt_open.Enabled = true;
-            txt_box.Enabled = true;
-            txt_adv.Enabled = true;
-            btn_img.Enabled = true;
-            btn_save.Enabled = true;
-            btn_edit.Text = "Refresh";
-        }
-        else if (btn_edit.Text == "Refresh")
-        {
-            btn_edit.Text = "Edit";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "ReloadPage", "location.reload();", true);
         }
     }
 
@@ -83,8 +31,13 @@ public partial class Admin : System.Web.UI.Page
         string open = txt_open.Text.Trim();
         string box = txt_box.Text.Trim();
         string adv = txt_adv.Text.Trim();
+        string turf_location = ddl_location.SelectedValue.Trim();
 
-        if (full == "")
+        if (turf_location == "")
+        {
+            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Select Turf Location', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
+        }
+        else if (full == "")
         {
             ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Enter Full Court Price', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
         }
@@ -110,7 +63,7 @@ public partial class Admin : System.Web.UI.Page
         }
         else
         {
-            string quesdata = "update admin_tbl set Full_price=@Full_price,Open_price=@Open_price,Box_price=@Box_price,Adv_price=@Adv_price,Qr_code=@Qr_code";
+            string quesdata = "update admin_tbl set Full_price=@Full_price,Open_price=@Open_price,Box_price=@Box_price,Adv_price=@Adv_price,Qr_code=@Qr_code where Turf_location=@Turf_location";
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
             con.Open();
@@ -120,21 +73,14 @@ public partial class Admin : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@Open_price", open);
             cmd.Parameters.AddWithValue("@Box_price", box);
             cmd.Parameters.AddWithValue("@Adv_price", adv);
+            cmd.Parameters.AddWithValue("@Turf_location", turf_location);
             byte[] imageData = Convert.FromBase64String(hidden_img.Value);
             cmd.Parameters.Add("@Qr_code", SqlDbType.Image).Value = imageData;
 
             if (cmd.ExecuteNonQuery() > 0)
             {
-                dataonpageload();
-                txt_full.Enabled = false;
-                txt_open.Enabled = false;
-                txt_box.Enabled = false;
-                txt_adv.Enabled = false;
-                btn_img.Enabled = false;
-                btn_save.Enabled = false;
-                btn_edit.Text = "Edit";
-
-                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('College Details Saved Successfully', { color: '#006600', background: '#ccffcc', blur: 0.2, delay: 0 });", true);
+                ddl_location_SelectedIndexChanged(sender, e);
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Admin Details Updated', { color: '#006600', background: '#ccffcc', blur: 0.2, delay: 0 });", true);
             }
             else
             {
@@ -149,5 +95,51 @@ public partial class Admin : System.Web.UI.Page
         Image1.Style["display"] = "none";
         btn_imgdelete.Style["display"] = "none";
         hidden_img.Value = null;
+    }
+
+    protected void ddl_location_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddl_location.SelectedIndex == 0)
+        {
+            Image1.ImageUrl = null;
+            Image1.Style["display"] = "none";
+            btn_imgdelete.Style["display"] = "none";
+            hidden_img.Value = null;
+            txt_full.Text = "";
+            txt_open.Text = "";
+            txt_box.Text = "";
+            txt_adv.Text = "";
+        }
+        else
+        {
+            DataTable dt = cls.fillDataTable("select * from admin_tbl where Turf_location='" + ddl_location.SelectedValue.Trim() + "'");
+            if (dt.Rows.Count > 0)
+            {
+                txt_full.Text = dt.Rows[0]["Full_price"].ToString();
+                txt_open.Text = dt.Rows[0]["Open_price"].ToString();
+                txt_box.Text = dt.Rows[0]["Box_price"].ToString();
+                txt_adv.Text = dt.Rows[0]["Adv_price"].ToString();
+                if (dt.Rows[0]["Qr_code"].ToString() != "")
+                {
+                    byte[] imageBytes = (byte[])dt.Rows[0]["Qr_code"];
+                    string base64Image = Convert.ToBase64String(imageBytes);
+                    string imageUrl = "data:image/jpeg;base64," + base64Image;
+                    Image1.Style["display"] = "";
+                    Image1.ImageUrl = imageUrl;
+                    hidden_img.Value = base64Image;
+                }
+                else
+                {
+                    Image1.ImageUrl = null;
+                    Image1.Style["display"] = "none";
+                    btn_imgdelete.Style["display"] = "none";
+                    hidden_img.Value = null;
+                }
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
+            }
+        }
     }
 }
