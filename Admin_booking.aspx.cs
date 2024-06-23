@@ -48,7 +48,6 @@ public partial class Admin_booking : System.Web.UI.Page
         {
             grd_data.DataSource = null;
             grd_data.DataBind();
-            //ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('No Data Found', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
         }
     }
 
@@ -72,6 +71,9 @@ public partial class Admin_booking : System.Web.UI.Page
         string Advance = txt_adv_amt.Text.Trim();
         string amount = txt_amt.Text.Trim();
         string status = ddl_status.SelectedValue.Trim();
+        string name = txt_name.Text.Trim();
+        string phone = txt_phone.Text.Trim();
+        string mail = txt_mail.Text.Trim();
         if (location == "")
         {
             ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Select Location', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
@@ -114,17 +116,59 @@ public partial class Admin_booking : System.Web.UI.Page
         }
         else
         {
+            DateTime start, end;
+            DateTime.TryParse(from_time, out start);
+            DateTime.TryParse(to_time, out end);
+            TimeSpan totalTime = end.Subtract(start);
+            int totalHours = totalTime.Hours;
+            int totalMinutes = totalTime.Minutes;
+            if (totalMinutes % 30 != 0)
+            {
+                totalMinutes = (totalMinutes / 30) * 30 + 30;
+            }
+            string time = totalHours + ":" + totalMinutes;
             DataTable dt = cls.fillDataTable("select [dbo].[GenerateIncrementedValue]()");
             string Booking_id = dt.Rows[0][0].ToString().Trim();
-            string qyr = "insert into Turf_details (Booking_id,Turf_location,Turf_type,Turf_date,Form_time,To_time,Total_time,Total_amount,Adv_amount) values ('" + Booking_id + "','" + location + "','" + type + "','" + date + "','" + from_time + "','" + to_time + "','" + to_time + "'," + amount + "," + Advance + ")";
+            string qyr = "";
+            if (btn_save.Text.Contains("Save"))
+            {
+                qyr = "insert into Turf_details (Booking_id,Name,Phone,Email,Turf_location,Turf_type,Turf_date,Form_time,To_time,Total_time,Total_amount,Adv_amount,confirm_flag,curr_dt) values ('" + Booking_id + "','" + name + "'," + phone + ",'" + mail + "','" + location + "','" + type + "','" + date + "','" + from_time + "','" + to_time + "','" + time + "'," + amount + "," + Advance + "," + status + ",GETDATE());";
+            }
+            else
+            {
+                Booking_id = txt_Bk_id.Text.Trim();
+                qyr = "update Turf_details set Name='" + name + "',Phone=" + phone + ",Email='" + mail + "',Turf_location='" + location + "',Turf_type='" + type + "',Turf_date='" + date + "',Form_time='" + from_time + "',To_time='" + to_time + "',Total_time='" + time + "',Total_amount=" + amount + ",Adv_amount=" + Advance + ",confirm_flag=" + status + ",mod_dt=GETDATE() where Booking_id='" + Booking_id + "';";
+            }
+            
             if (cls.DMLqueries(qyr))
             {
-                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Booking Details Saved Successfully', { color: '#006600', background: '#ccffcc', blur: 0.2, delay: 0 });", true);
+                
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Booking Details Saved Successfully', { color: '#006600', background: '#ccffcc', blur: 0.2, delay: 0 });$('#Modal_add').modal('hide');", true);
+                load_grd();
             }
             else
             {
                 ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
             }
         }
+    }
+
+    protected void btn_edit_Click(object sender, EventArgs e)
+    {
+        GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+        txt_Bk_id.Text = ((Label)gvRow.FindControl("grdlbl_id")).Text.Trim();
+        ddl_location.SelectedValue = ((Label)gvRow.FindControl("grdlbl_Location")).Text.Trim();
+        ddl_type.SelectedValue = ((Label)gvRow.FindControl("grdlbl_Type")).Text.Trim();
+        txt_bk_date.Text = Convert.ToDateTime(((Label)gvRow.FindControl("grdlbl_Date")).Text.Trim()).ToString("yyyy-MM-dd");
+        txt_from_time.Text = ((Label)gvRow.FindControl("grdlbl_Form_time")).Text.Trim();
+        txt_to_time.Text = ((Label)gvRow.FindControl("grdlbl_To_time")).Text.Trim();
+        txt_adv_amt.Text = ((Label)gvRow.FindControl("grdlbl_Adv_amount")).Text.Trim();
+        txt_amt.Text = ((Label)gvRow.FindControl("grdlbl_Total_amount")).Text.Trim();
+        ddl_status.SelectedValue = Convert.ToBoolean(((Label)gvRow.FindControl("grdlbl_status")).Text.Trim()) == true ? "1" : "0";
+        txt_name.Text = ((Label)gvRow.FindControl("grdlbl_name")).Text.Trim();
+        txt_phone.Text = ((Label)gvRow.FindControl("grdlbl_Phone")).Text.Trim();
+        txt_mail.Text = ((Label)gvRow.FindControl("grdlbl_Email")).Text.Trim();
+        btn_save.Text = "Update Booking";
+        ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$('#Modal_add').modal('show');", true);
     }
 }

@@ -41,7 +41,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt-2">
-                            <asp:TextBox ID="txt_date" runat="server" TextMode="Date" MaxLength="10" class="form-control" autocomplete="off" OnTextChanged="txt_date_TextChanged" AutoPostBack="true"></asp:TextBox>
+                            <asp:TextBox ID="txt_date" runat="server" TextMode="Date" MaxLength="10" class="form-control"  OnTextChanged="txt_date_TextChanged" AutoPostBack="true"></asp:TextBox>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 mt-2">
                             <asp:Button runat="server" ID="btn_add" CssClass="btn btn-block btn-info form-control" Text="Add Booking" OnClientClick="$('#Modal_add').modal('show');" />
@@ -51,70 +51,75 @@
                     <div class="row table-responsive">
                         <asp:GridView ID="grd_data" runat="server" CssClass="table" AutoGenerateColumns="false" Width="100%" data-toggle="data-table">
                             <Columns>
+                                <asp:TemplateField HeaderText="Status" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="grdlbl_status" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("confirm_flag") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Booking ID">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_id" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Booking_id") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_id" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Booking_id") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Name">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_name" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Name") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_name" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Name") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Phone">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_Phone" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Phone") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_Phone" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Phone") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Email">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_Email" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Email") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_Email" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Email") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Location">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_Location" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Turf_location") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_Location" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Turf_location") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Type">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_Type" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Turf_type") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_Type" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Turf_type") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Date">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_Date" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Date") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_Date" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Date") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Form Time">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_Form_time" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Form_time") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_Form_time" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Form_time") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="To Time">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_To_time" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("To_time") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_To_time" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("To_time") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Total Time">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_Total_time" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Total_time") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_Total_time" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Total_time") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Advance">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_Adv_amount" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Adv_amount") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_Adv_amount" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Adv_amount") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Total Amount">
                                     <ItemTemplate>
-                                        <asp:Label ID="grdlbl_Total_amount" runat="server" CssClass='<%# Eval("confirm_flag").ToString() == "1" ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Total_amount") %>'></asp:Label>
+                                        <asp:Label ID="grdlbl_Total_amount" runat="server" CssClass='<%# Convert.ToBoolean(Eval("confirm_flag")) == true ? "text-success clicklable" : "clicklable" %>' Text='<%# Eval("Total_amount") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Edit">
                                     <HeaderStyle CssClass="HiddenCol" />
                                     <ItemTemplate>
-                                        <asp:Button runat="server" ID="btn_edit" CssClass="grid-button" />
+                                        <asp:Button runat="server" ID="btn_edit" CssClass="grid-button" OnClick="btn_edit_Click" />
                                     </ItemTemplate>
                                     <ItemStyle CssClass="HiddenCol" />
                                 </asp:TemplateField>
@@ -145,7 +150,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                            <asp:TextBox ID="txt_Bk_id" runat="server" Placeholder="Booking ID" class="form-control" ReadOnly="true" autocomplete="off"></asp:TextBox>
+                                            <asp:TextBox ID="txt_Bk_id" runat="server" Placeholder="Booking ID" class="form-control" ReadOnly="true" ></asp:TextBox>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
                                             <asp:DropDownList ID="ddl_location" runat="server" CssClass="form-select shadow">
@@ -167,7 +172,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                            <asp:TextBox ID="txt_bk_date" runat="server" TextMode="Date" MaxLength="10" class="form-control date_flatpicker" autocomplete="off"></asp:TextBox>
+                                            <asp:TextBox ID="txt_bk_date" runat="server" TextMode="Date" MaxLength="10" class="form-control date_flatpicker" ></asp:TextBox>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
                                             <asp:TextBox ID="txt_from_time" runat="server" MaxLength="5" Placeholder="From Time" class="form-control"></asp:TextBox>
@@ -179,10 +184,10 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                            <asp:TextBox ID="txt_adv_amt" runat="server" MaxLength="10" Placeholder="Advance" class="form-control" autocomplete="off"></asp:TextBox>
+                                            <asp:TextBox ID="txt_adv_amt" runat="server" MaxLength="10" Placeholder="Advance" class="form-control" ></asp:TextBox>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                            <asp:TextBox ID="txt_amt" runat="server" MaxLength="10" Placeholder="Total Amount" class="form-control" autocomplete="off"></asp:TextBox>
+                                            <asp:TextBox ID="txt_amt" runat="server" MaxLength="10" Placeholder="Total Amount" class="form-control" ></asp:TextBox>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
                                             <asp:DropDownList ID="ddl_status" runat="server" CssClass="form-select shadow">
@@ -190,6 +195,17 @@
                                                 <asp:ListItem Text="Confirm" Value="1"></asp:ListItem>
                                                 <asp:ListItem Text="Cancel" Value="0"></asp:ListItem>
                                             </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                            <asp:TextBox ID="txt_name" runat="server" MaxLength="10" Placeholder="Name" class="form-control" ></asp:TextBox>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                            <asp:TextBox ID="txt_phone" runat="server" MaxLength="10" Placeholder="Phone" class="form-control" ></asp:TextBox>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
+                                            <asp:TextBox ID="txt_mail" runat="server" MaxLength="10" Placeholder="E-Mail" class="form-control" ></asp:TextBox>
                                         </div>
                                     </div>
                                     <br />
