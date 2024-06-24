@@ -164,6 +164,12 @@ public class Class1
         return dt_jserializer(dt);
     }
 
+    public string gte_blocked_days(string month)
+    {
+        DataTable dt = fillDataTable("WITH TimeInMinutes AS (SELECT Turf_date,CAST(LEFT(Total_time, 2) AS INT) * 60 + CAST(RIGHT(Total_time, 2) AS INT) AS MinutesSpent FROM Turf_details),DailyTotal AS (SELECT Turf_date,SUM(MinutesSpent) AS TotalMinutes FROM TimeInMinutes  GROUP BY Turf_date)SELECT Turf_date FROM DailyTotal WHERE  TotalMinutes = 1440 AND DATENAME(MONTH, Turf_date) = '" + month + "' AND YEAR(Turf_date) = YEAR(GETDATE());");
+        return dt_jserializer(dt);
+    }
+
     public string dt_jserializer(DataTable table)
     {
         JavaScriptSerializer jsSerializer = new JavaScriptSerializer();

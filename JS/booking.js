@@ -74,6 +74,9 @@ document.getElementById('calendarRow').addEventListener('click', function (event
             }
             renderMonth(currentMonth, currentYear);
         } else if (event.target.matches('.nextMonthBtn')) {
+            if ((currentMonth == currentDate.getMonth())) {
+                return;
+            }
             currentMonth++;
             if (currentMonth > 11) {
                 currentMonth = 0;
@@ -118,6 +121,25 @@ function getMonthName(monthIndex) {
 }
 
 function generateDaysHTML(daysInMonth, month) {
+    var data;
+    $.ajax({
+        type: "POST",
+        url: "booking.aspx/gte_blocked_days",
+        data: '{month:"' + month + '"}',
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        success: function (response) {
+            if (response.d != 'error') {
+                data = JSON.parse(response.d);
+            } else {
+                $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
+            }
+        },
+        error: function (error) {
+            $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
+        }
+    });
+
     let html = '<div class="table-responsive"><table class="table table-bordered">';
     html += '<thead><tr>';
     for (let i = 0; i < 7; i++) {
@@ -131,7 +153,7 @@ function generateDaysHTML(daysInMonth, month) {
         html += '<tr>';
         for (let i = 0; i < 7; i++) {
             var cssclass = 'btn-outline-primary';
-            if ((currentDay < currentDate.getDate()) && month == currentDate.getMonth()) {
+            if (((currentDay < currentDate.getDate()) && month == currentDate.getMonth()) || data.includes(currentDay)) {
                 cssclass = 'btn-soft-gray';
             }
             if (currentDay <= daysInMonth) {

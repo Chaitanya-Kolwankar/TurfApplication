@@ -98,4 +98,11 @@ public partial class booking : System.Web.UI.Page
         Class1 cls = new Class1();
         return cls.get_type_price(turf_location);
     }
+
+    [WebMethod]
+    public static string gte_blocked_days(string month)
+    {
+        Class1 cls = new Class1();
+        return cls.gte_blocked_days(month);
+    }
 }
