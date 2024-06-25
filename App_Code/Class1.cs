@@ -166,7 +166,8 @@ public class Class1
 
     public string gte_blocked_days(string month)
     {
-        DataTable dt = fillDataTable("WITH TimeInMinutes AS (SELECT Turf_date,CAST(LEFT(Total_time, 2) AS INT) * 60 + CAST(RIGHT(Total_time, 2) AS INT) AS MinutesSpent FROM Turf_details),DailyTotal AS (SELECT Turf_date,SUM(MinutesSpent) AS TotalMinutes FROM TimeInMinutes  GROUP BY Turf_date)SELECT Turf_date FROM DailyTotal WHERE  TotalMinutes = 1440 AND DATENAME(MONTH, Turf_date) = '" + month + "' AND YEAR(Turf_date) = YEAR(GETDATE());");
+        int num_month = Convert.ToInt32(month) + 1;
+        DataTable dt = fillDataTable("select RIGHT(Turf_date,2) Turf_date from (select Turf_date,SUM(turf_time) total_time  from (SELECT Turf_date,CAST(LEFT(Total_time, 2) AS INT) * 60 + CAST(RIGHT(Total_time, 2) AS INT) AS turf_time FROM Turf_details where MONTH(Turf_date) = '" + num_month + "' and del_flag=0 and confirm_flag=1) tbl group by Turf_date) lst_tbl where total_time >= 1440");
         return dt_jserializer(dt);
     }
 

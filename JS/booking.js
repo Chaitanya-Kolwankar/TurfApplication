@@ -21,15 +21,6 @@
                         $('#ContentPlaceHolder1_hidden_open').val(row.Open_price);
                         $('#ContentPlaceHolder1_hidden_box').val(row.Box_price);
                         $('#ContentPlaceHolder1_hidden_percent').val(row.Adv_price);
-
-                        document.getElementById('location').classList.remove('fade-in');
-                        document.getElementById('location').classList.add('fade-out');
-                        setTimeout(function () {
-                            document.getElementById('location').style.display = 'none';
-                            document.getElementById('type').style.display = 'block';
-                            document.getElementById('card_tital').innerText = 'Select Turf Type';
-                        }, 500);
-                        $('#ContentPlaceHolder1_hidden_location').val(event.currentTarget.id);
                     }
                 } else {
                     $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
@@ -39,6 +30,14 @@
                 $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
             }
         });
+        document.getElementById('location').classList.remove('fade-in');
+        document.getElementById('location').classList.add('fade-out');
+        setTimeout(function () {
+            document.getElementById('location').style.display = 'none';
+            document.getElementById('type').style.display = 'block';
+            document.getElementById('card_tital').innerText = 'Select Turf Type';
+        }, 500);
+        $('#ContentPlaceHolder1_hidden_location').val(event.currentTarget.id);
     }
 });
 
@@ -74,7 +73,7 @@ document.getElementById('calendarRow').addEventListener('click', function (event
             }
             renderMonth(currentMonth, currentYear);
         } else if (event.target.matches('.nextMonthBtn')) {
-            if ((currentMonth == currentDate.getMonth())) {
+            if (currentMonth > (currentDate.getMonth() + 1)) {
                 return;
             }
             currentMonth++;
@@ -152,8 +151,11 @@ function generateDaysHTML(daysInMonth, month) {
     while (currentDay <= daysInMonth) {
         html += '<tr>';
         for (let i = 0; i < 7; i++) {
+            var isPresent = data.some(function (item) {
+                return item.Turf_date === currentDay.toString();
+            });
             var cssclass = 'btn-outline-primary';
-            if (((currentDay < currentDate.getDate()) && month == currentDate.getMonth()) || data.includes(currentDay)) {
+            if (((currentDay < currentDate.getDate()) && month == currentDate.getMonth()) || isPresent) {
                 cssclass = 'btn-soft-gray';
             }
             if (currentDay <= daysInMonth) {
