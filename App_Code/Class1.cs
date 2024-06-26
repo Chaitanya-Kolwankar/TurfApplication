@@ -171,6 +171,13 @@ public class Class1
         return dt_jserializer(dt);
     }
 
+    public string gte_blocked_time(string date)
+    {
+        string date_frm= Convert.ToDateTime(date).ToString("yyyy-MM-dd");
+        DataTable dt = fillDataTable("select distinct Form_time,To_time from Turf_details where Turf_date=convert(varchar,'"+ date_frm + "',103) and confirm_flag=1 and del_flag=0");
+        return dt_jserializer(dt);
+    }
+
     public string dt_jserializer(DataTable table)
     {
         JavaScriptSerializer jsSerializer = new JavaScriptSerializer();

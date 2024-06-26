@@ -36,7 +36,7 @@
             document.getElementById('location').style.display = 'none';
             document.getElementById('type').style.display = 'block';
             document.getElementById('card_tital').innerText = 'Select Turf Type';
-        }, 500);
+        }, 100);
         $('#ContentPlaceHolder1_hidden_location').val(event.currentTarget.id);
     }
 });
@@ -194,6 +194,9 @@ function handleDayClick(label) {
 //-------------------------Claender JS End ------------------------------------
 
 //-------------------------TimeTable JS ---------------------------------------
+
+
+
 var selectedhour = '';
 $('.ddl_hour').change(function () {
     selectedhour = $(this).val();
@@ -247,6 +250,26 @@ function gettimetable() {
 
 
 function genatretime(durationHours, durationMinutes) {
+    $.ajax({
+        type: "POST",
+        url: "booking.aspx/gte_blocked_time",
+        data: '{date:"' + $('#ContentPlaceHolder1_hidden_date').val() + '"}',
+        contentType: "application/json; charset=utf-8",
+        async: false,
+        success: function (response) {
+            if (response.d != 'error') {
+                var data = JSON.parse(response.d);
+                if (data.length > 0) {
+
+                }
+            } else {
+                $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
+            }
+        },
+        error: function (error) {
+            $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
+        }
+    });
     let html1 = '';
     var endHour = parseInt(24) - parseInt(durationHours);
     if (durationMinutes == '30') {
@@ -268,6 +291,32 @@ function genatretime(durationHours, durationMinutes) {
         html1 += '<tr ' + displaymin + '><td><label class="btn btn-outline-primary form-control shadow btnday" onclick="handletimeClick(this)">' + clk + ':30</label></td></tr>';
     }
     return html1;
+}
+
+
+function getTimeIntervals(startTime, endTime) {
+    // Helper function to parse time string and return minutes from start of the day
+    function parseTime(timeStr) {
+        const [hours, minutes] = timeStr.split(':').map(Number);
+        return hours * 60 + minutes;
+    }
+
+    // Helper function to format minutes from start of the day to time string
+    function formatTime(minutes) {
+        const hours = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+        return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+    }
+
+    const startMinutes = parseTime(startTime);
+    const endMinutes = parseTime(endTime);
+
+    const intervals = [];
+    for (let currentMinutes = startMinutes; currentMinutes <= endMinutes; currentMinutes += 30) {
+        intervals.push(formatTime(currentMinutes));
+    }
+
+    return intervals;
 }
 
 function handletimeClick(label) {

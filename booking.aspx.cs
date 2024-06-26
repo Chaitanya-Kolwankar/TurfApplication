@@ -105,4 +105,11 @@ public partial class booking : System.Web.UI.Page
         Class1 cls = new Class1();
         return cls.gte_blocked_days(month);
     }
+
+    [WebMethod]
+    public static string gte_blocked_time(string date)
+    {
+        Class1 cls = new Class1();
+        return cls.gte_blocked_time(date);
+    }
 }

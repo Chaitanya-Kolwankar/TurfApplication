@@ -126,7 +126,7 @@ public partial class Admin_booking : System.Web.UI.Page
             {
                 totalMinutes = (totalMinutes / 30) * 30 + 30;
             }
-            string time = totalHours + ":" + totalMinutes;
+            string time = (totalHours < 10 ? "0" + totalHours.ToString() : totalHours.ToString()) + ":" + (totalMinutes < 10 ? "0" + totalMinutes.ToString() : totalMinutes.ToString());
             DataTable dt = cls.fillDataTable("select [dbo].[GenerateIncrementedValue]()");
             string Booking_id = dt.Rows[0][0].ToString().Trim();
             string qyr = "";
