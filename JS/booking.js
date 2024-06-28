@@ -7,12 +7,11 @@
             url: "booking.aspx/get_type_price",
             data: '{turf_location:"' + event.currentTarget.id + '"}',
             contentType: "application/json; charset=utf-8",
-            async: false,
+            async: true,
             success: function (response) {
                 if (response.d != 'error') {
                     var data = JSON.parse(response.d);
                     if (data.length > 0) {
-
                         var row = data[0];
                         $('.lbl_full_court').text(row.Full_price);
                         $('.lbl_open_court').text(row.Open_price);
@@ -36,7 +35,7 @@
             document.getElementById('location').style.display = 'none';
             document.getElementById('type').style.display = 'block';
             document.getElementById('card_tital').innerText = 'Select Turf Type';
-        }, 100);
+        }, 500);
         $('#ContentPlaceHolder1_hidden_location').val(event.currentTarget.id);
     }
 });
@@ -195,8 +194,6 @@ function handleDayClick(label) {
 
 //-------------------------TimeTable JS ---------------------------------------
 
-
-
 var selectedhour = '';
 $('.ddl_hour').change(function () {
     selectedhour = $(this).val();
@@ -248,8 +245,10 @@ function gettimetable() {
     document.getElementById('timetable').appendChild(timeContainer);
 }
 
-
 function genatretime(durationHours, durationMinutes) {
+    let blockedTimes = [];
+
+    // Fetch blocked times from the server
     $.ajax({
         type: "POST",
         url: "booking.aspx/gte_blocked_time",
@@ -258,10 +257,7 @@ function genatretime(durationHours, durationMinutes) {
         async: false,
         success: function (response) {
             if (response.d != 'error') {
-                var data = JSON.parse(response.d);
-                if (data.length > 0) {
-
-                }
+                blockedTimes = JSON.parse(response.d);
             } else {
                 $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
             }
@@ -270,53 +266,41 @@ function genatretime(durationHours, durationMinutes) {
             $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
         }
     });
-    let html1 = '';
-    var endHour = parseInt(24) - parseInt(durationHours);
-    if (durationMinutes == '30') {
 
-        endHour = parseInt(endHour) - parseInt(1);
-    }
+    let html1 = '';
+    const durationInMinutes = parseInt(durationHours) * 60 + parseInt(durationMinutes);
+    const lastStartTime = 24 * 60 - durationInMinutes;
+
     for (let i = 0; i < 24; i++) {
-        var clk = (i < 10) ? '0' + i : i;
-        var displaymin = '';
-        var displayhour = '';
-        if (i > endHour) {
-            displayhour = 'style="display: none;"';
-            displaymin = 'style="display: none;"'
+        for (let m = 0; m < 60; m += 30) {
+            const currentTime = i * 60 + m;
+            const potentialEndTime = currentTime + durationInMinutes;
+
+            let isBlocked = isTimeBlocked(currentTime, potentialEndTime, blockedTimes);
+            let isImpossible = currentTime > lastStartTime;
+
+            const displayStyle = isBlocked || isImpossible ? 'style="display: none;"' : '';
+            const timeString = `${String(i).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+
+            html1 += `<tr ${displayStyle}><td><label class="btn btn-outline-primary form-control shadow btnday" onclick="handletimeClick(this)">${timeString}</label></td></tr>`;
         }
-        if (i == endHour && durationMinutes == '00') {
-            displaymin = 'style="display: none;"'
-        }
-        html1 += '<tr ' + displayhour + '><td><label class="btn btn-outline-primary form-control shadow btnday" onclick="handletimeClick(this)">' + clk + ':00</label></td></tr>';
-        html1 += '<tr ' + displaymin + '><td><label class="btn btn-outline-primary form-control shadow btnday" onclick="handletimeClick(this)">' + clk + ':30</label></td></tr>';
     }
     return html1;
 }
 
+function parseTime(timeString) {
+    const [hours, minutes] = timeString.split(':').map(Number);
+    return hours * 60 + minutes;
+}
 
-function getTimeIntervals(startTime, endTime) {
-    // Helper function to parse time string and return minutes from start of the day
-    function parseTime(timeStr) {
-        const [hours, minutes] = timeStr.split(':').map(Number);
-        return hours * 60 + minutes;
-    }
-
-    // Helper function to format minutes from start of the day to time string
-    function formatTime(minutes) {
-        const hours = Math.floor(minutes / 60);
-        const mins = minutes % 60;
-        return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
-    }
-
-    const startMinutes = parseTime(startTime);
-    const endMinutes = parseTime(endTime);
-
-    const intervals = [];
-    for (let currentMinutes = startMinutes; currentMinutes <= endMinutes; currentMinutes += 30) {
-        intervals.push(formatTime(currentMinutes));
-    }
-
-    return intervals;
+function isTimeBlocked(start, end, blockedTimes) {
+    return blockedTimes.some(range => {
+        const rangeStart = parseTime(range.Form_time);
+        const rangeEnd = parseTime(range.To_time);
+        return (start < rangeEnd && end > rangeStart) ||
+            (start >= rangeStart && start < rangeEnd) ||
+            (end > rangeStart && end <= rangeEnd);
+    });
 }
 
 function handletimeClick(label) {
@@ -363,6 +347,3 @@ function handletimeClick(label) {
     }, 500);
 }
 //-------------------------TimeTable JS end------------------------------------
-
-
-

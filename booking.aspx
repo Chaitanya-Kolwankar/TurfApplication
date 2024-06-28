@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/turf.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="sopara">
+                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/turf.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="Sopara">
                                     <div class="card-body">
                                         <div style="height: 26vh;"></div>
                                     </div>
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                <div class="card text-center shadow shadow-lg" style="background-image: url('img/turf.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="east">
+                                <div class="card text-center shadow shadow-lg" style="background-image: url('img/turf.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="East">
                                     <div class="card-body">
                                         <div style="height: 26vh;"></div>
                                     </div>
@@ -163,7 +163,7 @@
                 <asp:HiddenField ID="hidden_total_time" runat="server"></asp:HiddenField>
                 <asp:HiddenField ID="hidden_from_time" runat="server"></asp:HiddenField>
                 <asp:HiddenField ID="hidden_to_time" runat="server"></asp:HiddenField>
-                <div class="card shadow">
+                <div class="">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mt-3">
                             <asp:DropDownList ID="ddl_hour" runat="server" CssClass="form-select ddl_hour">
@@ -220,7 +220,7 @@
             </div>
             <div id="user" style="display: none">
                 <div class="row">
-                    <div class="card shadow">
+                    <div class="">
                         <asp:HiddenField ID="hidden_price" runat="server"></asp:HiddenField>
                         <asp:HiddenField ID="hidden_percent" runat="server"></asp:HiddenField>
                         <div class="row">

@@ -17,7 +17,17 @@ public partial class booking : System.Web.UI.Page
     Class1 cls = new Class1();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Convert.ToString(Session["username"]) != "")
+        {
+            if (!IsPostBack)
+            {
+                dataonpageload();
+            }
+        }
+    }
 
+    public void dataonpageload()
+    {
     }
 
     protected void btn_confrim_Click(object sender, EventArgs e)

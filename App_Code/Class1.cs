@@ -174,7 +174,7 @@ public class Class1
     public string gte_blocked_time(string date)
     {
         string date_frm= Convert.ToDateTime(date).ToString("yyyy-MM-dd");
-        DataTable dt = fillDataTable("select distinct Form_time,To_time from Turf_details where Turf_date=convert(varchar,'"+ date_frm + "',103) and confirm_flag=1 and del_flag=0");
+        DataTable dt = fillDataTable("select distinct Form_time,To_time from Turf_details where Turf_date=convert(varchar,'"+ date_frm + "',103) and confirm_flag=1 and del_flag=0 order by Form_time,To_time");
         return dt_jserializer(dt);
     }
 
