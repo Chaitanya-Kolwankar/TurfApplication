@@ -98,7 +98,7 @@
             <!-- Top Nav Bar End -->
 
             <!-- page content -->
-            <div class="conatiner-fluid content-inner" style="margin-top: -80px !important;">
+            <div class="conatiner-fluid content-inner margin_contain" style="margin-top: -80px !important;">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>

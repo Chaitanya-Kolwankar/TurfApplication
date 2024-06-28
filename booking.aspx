@@ -317,8 +317,9 @@
                                     <div class="card shadow">
                                         <div class="card-header  border-bottom border-primary border-3">
                                             <div class="row" style="padding-bottom: 14px;">
-                                                <div class="col-md-12 col-sm-12">
-                                                    <h6 class="p-2">Please confirm Booking By Advance Payment</h6>
+                                                <div class="col-md-12 col-sm-12" style="text-align:center">
+                                                    <h6 id="lbl_model" runat="server" class="p-1"></h6>
+                                                    <h6 class="p-1">Please confirm Booking By Advance Payment</h6>
                                                 </div>
                                             </div>
                                         </div>

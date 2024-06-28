@@ -123,7 +123,7 @@ function generateDaysHTML(daysInMonth, month) {
     $.ajax({
         type: "POST",
         url: "booking.aspx/gte_blocked_days",
-        data: '{month:"' + month + '"}',
+        data: '{month:"' + month + '",turf_location:"' + $('#ContentPlaceHolder1_hidden_location').val() + '"}',
         contentType: "application/json; charset=utf-8",
         async: false,
         success: function (response) {
@@ -252,7 +252,7 @@ function genatretime(durationHours, durationMinutes) {
     $.ajax({
         type: "POST",
         url: "booking.aspx/gte_blocked_time",
-        data: '{date:"' + $('#ContentPlaceHolder1_hidden_date').val() + '"}',
+        data: '{date:"' + $('#ContentPlaceHolder1_hidden_date').val() + '",turf_location:"' + $('#ContentPlaceHolder1_hidden_location').val() + '"}',
         contentType: "application/json; charset=utf-8",
         async: false,
         success: function (response) {
@@ -319,9 +319,9 @@ function handletimeClick(label) {
     $('#ContentPlaceHolder1_hidden_to_time').val(hours + ':' + minutes);
 
     var price = "";
-    if ($('#ContentPlaceHolder1_hidden_type').val() == "full") {
+    if ($('#ContentPlaceHolder1_hidden_type').val() == "Full") {
         price = $('#ContentPlaceHolder1_hidden_full').val()
-    } else if ($('#ContentPlaceHolder1_hidden_type').val() == "open") {
+    } else if ($('#ContentPlaceHolder1_hidden_type').val() == "Open") {
         price = $('#ContentPlaceHolder1_hidden_open').val()
     } else {
         price = $('#ContentPlaceHolder1_hidden_box').val()

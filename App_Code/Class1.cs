@@ -164,17 +164,17 @@ public class Class1
         return dt_jserializer(dt);
     }
 
-    public string gte_blocked_days(string month)
+    public string gte_blocked_days(string month, string turf_location)
     {
         int num_month = Convert.ToInt32(month) + 1;
-        DataTable dt = fillDataTable("select RIGHT(Turf_date,2) Turf_date from (select Turf_date,SUM(turf_time) total_time  from (SELECT Turf_date,CAST(LEFT(Total_time, 2) AS INT) * 60 + CAST(RIGHT(Total_time, 2) AS INT) AS turf_time FROM Turf_details where MONTH(Turf_date) = '" + num_month + "' and del_flag=0 and confirm_flag=1) tbl group by Turf_date) lst_tbl where total_time >= 1440");
+        DataTable dt = fillDataTable("select RIGHT(Turf_date,2) Turf_date from (select Turf_date,SUM(turf_time) total_time  from (SELECT Turf_date,CAST(LEFT(Total_time, 2) AS INT) * 60 + CAST(RIGHT(Total_time, 2) AS INT) AS turf_time FROM Turf_details where MONTH(Turf_date) = '" + num_month + "' and del_flag=0 and Turf_location='" + turf_location + "' and (confirm_flag=1 or curr_dt >= DATEADD(HOUR, -2, GETDATE()))) tbl group by Turf_date) lst_tbl where total_time >= 1440");
         return dt_jserializer(dt);
     }
 
-    public string gte_blocked_time(string date)
+    public string gte_blocked_time(string date, string turf_location)
     {
-        string date_frm= Convert.ToDateTime(date).ToString("yyyy-MM-dd");
-        DataTable dt = fillDataTable("select distinct Form_time,To_time from Turf_details where Turf_date=convert(varchar,'"+ date_frm + "',103) and confirm_flag=1 and del_flag=0 order by Form_time,To_time");
+        string date_frm = Convert.ToDateTime(date).ToString("yyyy-MM-dd");
+        DataTable dt = fillDataTable("select distinct Form_time,To_time from Turf_details where Turf_date=convert(varchar,'" + date_frm + "',103) and (confirm_flag=1 or curr_dt >= DATEADD(HOUR, -2, GETDATE())) and Turf_location='" + turf_location + "' and del_flag=0 order by Form_time,To_time");
         return dt_jserializer(dt);
     }
 
