@@ -21,7 +21,7 @@
                     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/turf.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="Vatar">
+                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/bg_1.jpg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="Vatar">
                                     <div class="card-body">
                                         <div style="height: 26vh;"></div>
                                     </div>
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/turf.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="Sopara">
+                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/bg_2.jpg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="Sopara">
                                     <div class="card-body">
                                         <div style="height: 26vh;"></div>
                                     </div>
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                <div class="card text-center shadow shadow-lg" style="background-image: url('img/turf.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="East">
+                                <div class="card text-center shadow shadow-lg" style="background-image: url('img/bg_3.jpg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="East">
                                     <div class="card-body">
                                         <div style="height: 26vh;"></div>
                                     </div>
