@@ -32,10 +32,15 @@ public partial class Admin : System.Web.UI.Page
         string box = txt_box.Text.Trim();
         string adv = txt_adv.Text.Trim();
         string turf_location = ddl_location.SelectedValue.Trim();
+        string Price_type = ddl_price_type.SelectedValue.Trim();
 
         if (turf_location == "")
         {
             ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Select Turf Location', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
+        }
+        else if(Price_type == "")
+        {
+            ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Select Price Type', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });", true);
         }
         else if (full == "")
         {
@@ -63,7 +68,7 @@ public partial class Admin : System.Web.UI.Page
         }
         else
         {
-            string quesdata = "update admin_tbl set Full_price=@Full_price,Open_price=@Open_price,Box_price=@Box_price,Adv_price=@Adv_price,Qr_code=@Qr_code where Turf_location=@Turf_location";
+            string quesdata = "update admin_tbl set Full_price=@Full_price,Open_price=@Open_price,Box_price=@Box_price,Adv_price=@Adv_price where Turf_location=@Turf_location and Price_type=@Price_type;update admin_tbl set Qr_code=@Qr_code where Turf_location=@Turf_location1;";
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["connect"].ConnectionString);
             con.Open();
@@ -74,6 +79,8 @@ public partial class Admin : System.Web.UI.Page
             cmd.Parameters.AddWithValue("@Box_price", box);
             cmd.Parameters.AddWithValue("@Adv_price", adv);
             cmd.Parameters.AddWithValue("@Turf_location", turf_location);
+            cmd.Parameters.AddWithValue("@Turf_location1", turf_location);
+            cmd.Parameters.AddWithValue("@Price_type", Price_type);
             byte[] imageData = Convert.FromBase64String(hidden_img.Value);
             cmd.Parameters.Add("@Qr_code", SqlDbType.Image).Value = imageData;
 
@@ -99,20 +106,35 @@ public partial class Admin : System.Web.UI.Page
 
     protected void ddl_location_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddl_location.SelectedIndex == 0)
+        Image1.ImageUrl = null;
+        Image1.Style["display"] = "none";
+        btn_imgdelete.Style["display"] = "none";
+        hidden_img.Value = null;
+        txt_full.Text = "";
+        txt_open.Text = "";
+        txt_box.Text = "";
+        txt_adv.Text = "";
+        ddl_price_type.SelectedIndex = 0;
+        ddl_price_type.Enabled = false;
+        if (ddl_location.SelectedIndex != 0)
         {
-            Image1.ImageUrl = null;
-            Image1.Style["display"] = "none";
-            btn_imgdelete.Style["display"] = "none";
-            hidden_img.Value = null;
-            txt_full.Text = "";
-            txt_open.Text = "";
-            txt_box.Text = "";
-            txt_adv.Text = "";
+            ddl_price_type.Enabled = true;
         }
-        else
+    }
+
+    protected void ddl_price_type_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Image1.ImageUrl = null;
+        Image1.Style["display"] = "none";
+        btn_imgdelete.Style["display"] = "none";
+        hidden_img.Value = null;
+        txt_full.Text = "";
+        txt_open.Text = "";
+        txt_box.Text = "";
+        txt_adv.Text = "";
+        if (ddl_price_type.SelectedIndex != 0)
         {
-            DataTable dt = cls.fillDataTable("select * from admin_tbl where Turf_location='" + ddl_location.SelectedValue.Trim() + "'");
+            DataTable dt = cls.fillDataTable("select * from admin_tbl where Turf_location='" + ddl_location.SelectedValue.Trim() + "' and Price_type='" + ddl_price_type.SelectedValue + "'");
             if (dt.Rows.Count > 0)
             {
                 txt_full.Text = dt.Rows[0]["Full_price"].ToString();

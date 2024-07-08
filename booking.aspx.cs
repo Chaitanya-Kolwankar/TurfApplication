@@ -121,10 +121,10 @@ public partial class booking : System.Web.UI.Page
     }
 
     [WebMethod]
-    public static string get_type_price(string turf_location)
+    public static string get_type_price(string turf_location, string date)
     {
         Class1 cls = new Class1();
-        return cls.get_type_price(turf_location);
+        return cls.get_type_price(turf_location, date);
     }
 
     [WebMethod]

@@ -16,12 +16,19 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-md-3 col-sm-12 col-xs-12  mt-2">
                             <asp:DropDownList ID="ddl_location" runat="server" CssClass="form-select shadow" OnSelectedIndexChanged="ddl_location_SelectedIndexChanged" AutoPostBack="true">
                                 <asp:ListItem Text="Select Location" Value=""></asp:ListItem>
                                 <asp:ListItem Text="Vatar" Value="Vatar"></asp:ListItem>
                                 <asp:ListItem Text="Sopara" Value="Sopara"></asp:ListItem>
                                 <asp:ListItem Text="East" Value="East"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12 mt-2">
+                            <asp:DropDownList ID="ddl_price_type" runat="server" CssClass="form-select shadow" OnSelectedIndexChanged="ddl_price_type_SelectedIndexChanged" AutoPostBack="true" Enabled="false">
+                                <asp:ListItem Text="Select Price type" Value=""></asp:ListItem>
+                                <asp:ListItem Text="Weekdays" Value="weekday"></asp:ListItem>
+                                <asp:ListItem Text="Weekends" Value="weekend"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -49,7 +56,7 @@
                                 </div>
                                 <div class="col-md-3 col-sm-12 col-xs-12 mt-2">
                                     <div class="input-group border-bottom border-2 border-primary rounded shadow">
-                                        <span class="input-group-text text-primary">Advance</span>
+                                        <span class="input-group-text text-primary">Advance(in %)</span>
                                         <asp:TextBox ID="txt_adv" CssClass="form-control txt_location" runat="server" MaxLength="4" onkeypress="return allowonlynumbers(event,this);"></asp:TextBox>
                                     </div>
                                 </div>

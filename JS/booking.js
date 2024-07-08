@@ -2,58 +2,19 @@
     if (event.target.tagName.toLowerCase() === 'a') {
         event.stopPropagation();
     } else {
-        $.ajax({
-            type: "POST",
-            url: "booking.aspx/get_type_price",
-            data: '{turf_location:"' + event.currentTarget.id + '"}',
-            contentType: "application/json; charset=utf-8",
-            async: true,
-            success: function (response) {
-                if (response.d != 'error') {
-                    var data = JSON.parse(response.d);
-                    if (data.length > 0) {
-                        var row = data[0];
-                        $('.lbl_full_court').text(row.Full_price);
-                        $('.lbl_open_court').text(row.Open_price);
-                        $('.lbl_box_court').text(row.Box_price);
-                        $('#ContentPlaceHolder1_hidden_full').val(row.Full_price);
-                        $('#ContentPlaceHolder1_hidden_open').val(row.Open_price);
-                        $('#ContentPlaceHolder1_hidden_box').val(row.Box_price);
-                        $('#ContentPlaceHolder1_hidden_percent').val(row.Adv_price);
-                    }
-                } else {
-                    $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
-                }
-            },
-            error: function (error) {
-                $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
-            }
-        });
         document.getElementById('location').classList.remove('fade-in');
         document.getElementById('location').classList.add('fade-out');
         setTimeout(function () {
             document.getElementById('location').style.display = 'none';
-            document.getElementById('type').style.display = 'block';
-            document.getElementById('card_tital').innerText = 'Select Turf Type';
+            document.getElementById('calender').style.display = 'block';
+            renderMonth(currentMonth, currentYear);
+            document.getElementById('card_tital').innerText = 'Select Date';
         }, 500);
         $('#ContentPlaceHolder1_hidden_location').val(event.currentTarget.id);
     }
 });
 
-$('.princing-item').click(function (event) {
-    document.getElementById('type').classList.remove('fade-in');
-    document.getElementById('type').classList.add('fade-out');
-    setTimeout(function () {
-        document.getElementById('type').style.display = 'none';
-        document.getElementById('calender').style.display = 'block';
-        renderMonth(currentMonth, currentYear);
-        document.getElementById('card_tital').innerText = 'Select Date';
-    }, 500);
-    $('#ContentPlaceHolder1_hidden_type').val(event.currentTarget.id);
-});
-
 //-------------------------Claender JS------------------------------------
-
 const currentDate = new Date();
 
 let currentMonth = currentDate.getMonth();
@@ -179,21 +140,61 @@ function handleDayClick(label) {
     if (label.classList.contains('btn-soft-gray')) {
         return;
     }
-    var date = label.innerText + '/' + $('#prevMonthBtn').parent().next().find('h2').text().replace(' ', '/');
-    document.getElementById('calender').classList.remove('fade-in');
-    document.getElementById('calender').classList.add('fade-out');
-    setTimeout(function () {
-        document.getElementById('calender').style.display = 'none';
-        document.getElementById('time').style.display = 'block';
-        document.getElementById('card_tital').innerText = 'Select Turf Time';
-    }, 500);
-    $('#ContentPlaceHolder1_hidden_date').val(date);
+    else {
+        var date = label.innerText + '/' + $('#prevMonthBtn').parent().next().find('h2').text().replace(' ', '/');
+        $.ajax({
+            type: "POST",
+            url: "booking.aspx/get_type_price",
+            data: '{turf_location:"' + $('#ContentPlaceHolder1_hidden_location').val() + '",date:"' + date + '"}',
+            contentType: "application/json; charset=utf-8",
+            async: false,
+            success: function (response) {
+                if (response.d != 'error') {
+                    var data = JSON.parse(response.d);
+                    if (data.length > 0) {
+                        var row = data[0];
+                        $('.lbl_full_court').text(row.Full_price);
+                        $('.lbl_open_court').text(row.Open_price);
+                        $('.lbl_box_court').text(row.Box_price);
+                        $('#ContentPlaceHolder1_hidden_full').val(row.Full_price);
+                        $('#ContentPlaceHolder1_hidden_open').val(row.Open_price);
+                        $('#ContentPlaceHolder1_hidden_box').val(row.Box_price);
+                        $('#ContentPlaceHolder1_hidden_percent').val(row.Adv_price);
+                    }
+                } else {
+                    $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
+                }
+            },
+            error: function (error) {
+                $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
+            }
+        });
+        var date = label.innerText + '/' + $('#prevMonthBtn').parent().next().find('h2').text().replace(' ', '/');
+        document.getElementById('calender').classList.remove('fade-in');
+        document.getElementById('calender').classList.add('fade-out');
+        setTimeout(function () {
+            document.getElementById('calender').style.display = 'none';
+            document.getElementById('type').style.display = 'block';
+            document.getElementById('card_tital').innerText = 'Select Turf Type';
+        }, 500);
+        $('#ContentPlaceHolder1_hidden_date').val(date);
+    }
 }
-
 //-------------------------Claender JS End ------------------------------------
 
-//-------------------------TimeTable JS ---------------------------------------
+$('.princing-item').click(function (event) {
 
+    document.getElementById('type').classList.remove('fade-in');
+    document.getElementById('type').classList.add('fade-out');
+    setTimeout(function () {
+        document.getElementById('type').style.display = 'none';
+        document.getElementById('time').style.display = 'block';
+        document.getElementById('card_tital').innerText = 'Select Time';
+    }, 500);
+    $('#ContentPlaceHolder1_hidden_type').val(event.currentTarget.id);
+});
+
+//-------------------------TimeTable JS ---------------------------------------
 var selectedhour = '';
 $('.ddl_hour').change(function () {
     selectedhour = $(this).val();

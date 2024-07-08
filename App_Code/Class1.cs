@@ -13,6 +13,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Web.Script.Serialization;
 using System.Collections.Generic;
+using System.Globalization;
 /// <summary>
 /// Summary description for Class1
 /// </summary>
@@ -158,23 +159,39 @@ public class Class1
         return ds;
     }
 
-    public string get_type_price(string turf_loactaion)
+    public string get_type_price(string turf_loactaion, string date)
     {
-        DataTable dt = fillDataTable("select * from admin_tbl where Turf_location='" + turf_loactaion + "'");
+        int dayPart = Convert.ToInt32(date.Substring(0, date.IndexOf('/')));
+        string format = "dd/MMMM/yyyy";
+        if (dayPart < 10)
+        {
+            format = "d/MMMM/yyyy";
+        }
+
+        DateTime dateString = DateTime.ParseExact(date, format, CultureInfo.InvariantCulture);
+        string week_type = IsWeekend(dateString) ? "weekend" : "weekday";
+
+        DataTable dt = fillDataTable("select Full_price,Open_price,Box_price,Adv_price from admin_tbl where Turf_location='" + turf_loactaion + "' and Price_type='" + week_type + "'");
         return dt_jserializer(dt);
+    }
+
+    static bool IsWeekend(DateTime date)
+    {
+        DayOfWeek day = date.DayOfWeek;
+        return (day == DayOfWeek.Saturday || day == DayOfWeek.Sunday);
     }
 
     public string gte_blocked_days(string month, string turf_location)
     {
         int num_month = Convert.ToInt32(month) + 1;
-        DataTable dt = fillDataTable("select RIGHT(Turf_date,2) Turf_date from (select Turf_date,SUM(turf_time) total_time  from (SELECT Turf_date,CAST(LEFT(Total_time, 2) AS INT) * 60 + CAST(RIGHT(Total_time, 2) AS INT) AS turf_time FROM Turf_details where MONTH(Turf_date) = '" + num_month + "' and del_flag=0 and Turf_location='" + turf_location + "' and (confirm_flag=1 or curr_dt >= DATEADD(HOUR, -2, GETDATE()))) tbl group by Turf_date) lst_tbl where total_time >= 1440");
+        DataTable dt = fillDataTable("select RIGHT(Turf_date,2) Turf_date from (select Turf_date,SUM(turf_time) total_time  from (SELECT Turf_date,CAST(LEFT(Total_time, 2) AS INT) * 60 + CAST(RIGHT(Total_time, 2) AS INT) AS turf_time FROM Turf_details where MONTH(Turf_date) = '" + num_month + "' and del_flag=0 and Turf_location='" + turf_location + "' and (confirm_flag=1 or curr_dt >= DATEADD(HOUR, -1, GETDATE()))) tbl group by Turf_date) lst_tbl where total_time >= 1440");
         return dt_jserializer(dt);
     }
 
     public string gte_blocked_time(string date, string turf_location)
     {
         string date_frm = Convert.ToDateTime(date).ToString("yyyy-MM-dd");
-        DataTable dt = fillDataTable("select distinct Form_time,To_time from Turf_details where Turf_date=convert(varchar,'" + date_frm + "',103) and (confirm_flag=1 or curr_dt >= DATEADD(HOUR, -2, GETDATE())) and Turf_location='" + turf_location + "' and del_flag=0 order by Form_time,To_time");
+        DataTable dt = fillDataTable("select distinct Form_time,To_time from Turf_details where Turf_date=convert(varchar,'" + date_frm + "',103) and (confirm_flag=1 or curr_dt >= DATEADD(HOUR, -1, GETDATE())) and Turf_location='" + turf_location + "' and del_flag=0 order by Form_time,To_time");
         return dt_jserializer(dt);
     }
 
