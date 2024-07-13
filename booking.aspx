@@ -8,9 +8,14 @@
     <div class="card shadow">
         <div class="card-header border-bottom border-primary border-3 justify-content-center">
             <div class="row" style="padding-bottom: 14px;">
-                <h4>
-                    <sapn id="card_tital">Select Location</sapn>
-                </h4>
+                <div class="col-10" style="align-items: center;display: flex;">
+                    <h4>
+                        <sapn id="card_tital">Select Location</sapn>
+                    </h4>
+                </div>
+                <div class="col-2">
+                    <label id="btn_previous" data-toggle="location" class="btn btn-icon btn-outline-primary btn_previous" style="float: right;"><span><i class="fa fa-2x fa-angle-double-left"></i></span></label>
+                </div>
             </div>
         </div>
         <div class="card-body">
@@ -317,7 +322,7 @@
                                     <div class="card shadow">
                                         <div class="card-header  border-bottom border-primary border-3">
                                             <div class="row" style="padding-bottom: 14px;">
-                                                <div class="col-md-12 col-sm-12" style="text-align:center">
+                                                <div class="col-md-12 col-sm-12" style="text-align: center">
                                                     <h6 id="lbl_model" runat="server" class="p-1"></h6>
                                                     <h6 class="p-1">Please confirm Booking By Advance Payment</h6>
                                                 </div>

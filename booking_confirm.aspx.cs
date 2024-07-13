@@ -37,8 +37,8 @@ public partial class booking_confirm : System.Web.UI.Page
                 {
                     if (dt.Rows[0]["Email"].ToString().Trim() != "")
                     {
-                        string fromMail = "abrahamscourt123@gmail.com";
-                        string fromPassword = "bmhpydveqcemxfsb";
+                        string fromMail = "booking.abrahamscourt@gmail.com";
+                        string fromPassword = "oebifvlldjerndfm";
 
                         MailMessage message = new MailMessage();
                         message.From = new MailAddress(fromMail);

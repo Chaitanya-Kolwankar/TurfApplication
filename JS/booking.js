@@ -4,9 +4,11 @@
     } else {
         document.getElementById('location').classList.remove('fade-in');
         document.getElementById('location').classList.add('fade-out');
+        document.getElementById('calender').classList.remove('fade-out');
         setTimeout(function () {
             document.getElementById('location').style.display = 'none';
             document.getElementById('calender').style.display = 'block';
+            document.querySelector('.btn_previous').setAttribute('data-toggle', 'calender');
             renderMonth(currentMonth, currentYear);
             document.getElementById('card_tital').innerText = 'Select Date';
         }, 500);
@@ -66,7 +68,7 @@ function renderMonth(month, year) {
                 </div>
         <div class="card-body">
             <div class="row">
-                ${generateDaysHTML(daysInMonth, month)}
+                ${generateDaysHTML(daysInMonth, month, year)}
             </div>
         </div>
       </div>
@@ -79,7 +81,7 @@ function getMonthName(monthIndex) {
     return months[monthIndex % 12];
 }
 
-function generateDaysHTML(daysInMonth, month) {
+function generateDaysHTML(daysInMonth, month, year) {
     var data;
     $.ajax({
         type: "POST",
@@ -106,26 +108,31 @@ function generateDaysHTML(daysInMonth, month) {
     }
     html += '</tr></thead>';
     html += '<tbody>';
-    let currentDay = 1;
-    var cssclass = 'btn-outline-primary';
-    while (currentDay <= daysInMonth) {
+
+    let firstDayOfMonth = new Date(year, month, 1).getDay();
+    let dayCount = 1;
+
+    for (let i = 0; i < 6; i++) {  // Up to 6 weeks
         html += '<tr>';
-        for (let i = 0; i < 7; i++) {
-            var isPresent = data.some(function (item) {
-                return item.Turf_date === currentDay.toString();
-            });
-            var cssclass = 'btn-outline-primary';
-            if (((currentDay < currentDate.getDate()) && month == currentDate.getMonth()) || isPresent) {
-                cssclass = 'btn-soft-gray';
-            }
-            if (currentDay <= daysInMonth) {
-                html += '<td><label class="btn ' + cssclass + ' form-control shadow btnday" onclick="handleDayClick(this)" text="' + currentDay + '">' + currentDay + '</label></td>';
-                currentDay++;
-            } else {
+        for (let j = 0; j < 7; j++) {
+            if (i === 0 && j < firstDayOfMonth) {
                 html += '<td></td>';
+            } else if (dayCount > daysInMonth) {
+                html += '<td></td>';
+            } else {
+                var isPresent = data.some(function (item) {
+                    return item.Turf_date === dayCount.toString();
+                });
+                var cssclass = 'btn-outline-primary';
+                if (((dayCount < currentDate.getDate()) && month == currentDate.getMonth() && year == currentDate.getFullYear()) || isPresent) {
+                    cssclass = 'btn-soft-gray';
+                }
+                html += '<td><label class="btn ' + cssclass + ' form-control shadow btnday" onclick="handleDayClick(this)" text="' + dayCount + '">' + dayCount + '</label></td>';
+                dayCount++;
             }
         }
         html += '</tr>';
+        if (dayCount > daysInMonth) break;
     }
     html += '</tbody></table></div>';
     return html;
@@ -172,9 +179,11 @@ function handleDayClick(label) {
         var date = label.innerText + '/' + $('#prevMonthBtn').parent().next().find('h2').text().replace(' ', '/');
         document.getElementById('calender').classList.remove('fade-in');
         document.getElementById('calender').classList.add('fade-out');
+        document.getElementById('type').classList.remove('fade-out');
         setTimeout(function () {
             document.getElementById('calender').style.display = 'none';
             document.getElementById('type').style.display = 'block';
+            document.querySelector('.btn_previous').setAttribute('data-toggle', 'type');
             document.getElementById('card_tital').innerText = 'Select Turf Type';
         }, 500);
         $('#ContentPlaceHolder1_hidden_date').val(date);
@@ -186,9 +195,11 @@ $('.princing-item').click(function (event) {
 
     document.getElementById('type').classList.remove('fade-in');
     document.getElementById('type').classList.add('fade-out');
+    document.getElementById('time').classList.remove('fade-out');
     setTimeout(function () {
         document.getElementById('type').style.display = 'none';
-        document.getElementById('time').style.display = 'block';
+        document.getElementById('time').style.display = 'block'
+        document.querySelector('.btn_previous').setAttribute('data-toggle', 'time');;
         document.getElementById('card_tital').innerText = 'Select Time';
     }, 500);
     $('#ContentPlaceHolder1_hidden_type').val(event.currentTarget.id);
@@ -332,6 +343,7 @@ function handletimeClick(label) {
 
     document.getElementById('time').classList.remove('fade-in');
     document.getElementById('time').classList.add('fade-out');
+    document.getElementById('user').classList.remove('fade-out');
     setTimeout(function () {
         $('.txt_location').val($('#ContentPlaceHolder1_hidden_location').val());
         $('.txt_date').val($('#ContentPlaceHolder1_hidden_date').val());
@@ -345,6 +357,71 @@ function handletimeClick(label) {
         document.getElementById('time').style.display = 'none';
         document.getElementById('user').style.display = 'block';
         document.getElementById('card_tital').innerText = 'Fill Details';
+        document.querySelector('.btn_previous').setAttribute('data-toggle', 'user');
     }, 500);
 }
 //-------------------------TimeTable JS end------------------------------------
+$('.btn_previous').click(function () {
+    var dataToggle = $(this).attr('data-toggle');
+    if (dataToggle === 'location') {
+        return;
+        
+    } else if (dataToggle === 'calender'){
+        document.getElementById('calender').classList.remove('fade-in');
+        document.getElementById('calender').classList.add('fade-out');
+        document.getElementById('location').classList.remove('fade-out');
+        setTimeout(function () {
+            document.getElementById('calender').style.display = 'none';
+            document.getElementById('location').style.display = 'block';
+            document.querySelector('.btn_previous').setAttribute('data-toggle', 'location');
+            document.getElementById('card_tital').innerText = 'Select Location';
+        }, 500);
+        $('#ContentPlaceHolder1_hidden_location').val("");
+    }
+    else if (dataToggle === 'type') {
+        document.getElementById('type').classList.remove('fade-in');
+        document.getElementById('type').classList.add('fade-out');
+        document.getElementById('calender').classList.remove('fade-out');
+        setTimeout(function () {
+            document.getElementById('type').style.display = 'none';
+            document.getElementById('calender').style.display = 'block'
+            document.querySelector('.btn_previous').setAttribute('data-toggle', 'calender');
+            renderMonth(currentMonth, currentYear);
+            document.getElementById('card_tital').innerText = 'Select Calender';
+        }, 500);
+        $('#ContentPlaceHolder1_hidden_date').val("");
+    }
+    else if (dataToggle === 'time') {
+        document.getElementById('time').classList.remove('fade-in');
+        document.getElementById('time').classList.add('fade-out');
+        document.getElementById('type').classList.remove('fade-out');
+        setTimeout(function () {
+            document.getElementById('time').style.display = 'none';
+            document.getElementById('type').style.display = 'block'
+            document.querySelector('.btn_previous').setAttribute('data-toggle', 'type');
+            document.getElementById('card_tital').innerText = 'Select Calender';
+        }, 500);
+        $('#ContentPlaceHolder1_hidden_type').val("");
+
+    }
+    else if (dataToggle === 'user') {
+        document.getElementById('user').classList.remove('fade-in');
+        document.getElementById('user').classList.add('fade-out');
+        document.getElementById('time').classList.remove('fade-out');
+        setTimeout(function () {
+            $('.txt_location').val("");
+            $('.txt_date').val("");
+            $('.txt_from_time').val("");
+            $('.txt_to_time').val("");
+            $('.lbl_turf_type').val("");
+            $('.lbl_price').val("");
+            $('.lbl_time').val("");
+            $('.lbl_totalPrice').val("");
+            $('#ContentPlaceHolder1_hidden_price').val("");
+            document.getElementById('user').style.display = 'none';
+            document.getElementById('time').style.display = 'block';
+            document.getElementById('card_tital').innerText = 'Fill Details';
+            document.querySelector('.btn_previous').setAttribute('data-toggle', 'time');
+        }, 500);
+    }
+});
