@@ -399,7 +399,7 @@ $('.btn_previous').click(function () {
             document.getElementById('time').style.display = 'none';
             document.getElementById('type').style.display = 'block'
             document.querySelector('.btn_previous').setAttribute('data-toggle', 'type');
-            document.getElementById('card_tital').innerText = 'Select Calender';
+            document.getElementById('card_tital').innerText = 'Select Type';
         }, 500);
         $('#ContentPlaceHolder1_hidden_type').val("");
 
@@ -420,7 +420,7 @@ $('.btn_previous').click(function () {
             $('#ContentPlaceHolder1_hidden_price').val("");
             document.getElementById('user').style.display = 'none';
             document.getElementById('time').style.display = 'block';
-            document.getElementById('card_tital').innerText = 'Fill Details';
+            document.getElementById('card_tital').innerText = 'Select Time';
             document.querySelector('.btn_previous').setAttribute('data-toggle', 'time');
         }, 500);
     }
