@@ -133,7 +133,7 @@
 
     <%-- Modal  --%>
 
-    <div class="modal fade" id="Modal_add" tabindex="-1" aria-labelledby="Modal_qrLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="Modal_add" tabindex="-1" aria-labelledby="Modal_qrLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <asp:UpdatePanel runat="server">
             <ContentTemplate>
                 <div class="modal-dialog" style="height: 94vh;">
@@ -142,8 +142,11 @@
                             <div class="card shadow w-100">
                                 <div class="card-header  border-bottom border-primary border-3">
                                     <div class="row" style="padding-bottom: 14px;">
-                                        <div class="col-md-12 col-sm-12">
+                                        <div class="col-11">
                                             <h4>Add Booking</h4>
+                                        </div>
+                                        <div class="col-1">
+                                            <label data-bs-dismiss="modal" class="btn-close" aria-label="Close" style="float: right;"></label>
                                         </div>
                                     </div>
                                 </div>

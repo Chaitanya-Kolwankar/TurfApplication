@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/bg_2.jpg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="Sopara">
+                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/bg_2.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="Sopara">
                                     <div class="card-body">
                                         <div style="height: 26vh;"></div>
                                     </div>
@@ -313,10 +313,10 @@
     <%-- Modal  --%>
     <asp:UpdatePanel runat="server">
         <ContentTemplate>
-            <div class="modal fade" id="Modal_qr" tabindex="-1" aria-labelledby="Modal_qrLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+            <div class="modal fade" id="Modal_qr" tabindex="-1" aria-labelledby="Modal_qrLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
-                        <div class="modal-dialog" style="height: 94vh;">
+                        <div class="modal-dialog" >
                             <div class="modal-content transparent-modal">
                                 <div class="modal-body align-content-center flex-container transparent-modal">
                                     <div class="card shadow">

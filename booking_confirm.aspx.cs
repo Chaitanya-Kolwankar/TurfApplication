@@ -15,7 +15,14 @@ public partial class booking_confirm : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            dataonpageload();
+            try
+            {
+                dataonpageload();
+            }
+            catch (Exception ex)
+            {
+                set_msg("danger", "Somthing Went Wrong !!! | Error:" + ex + "");
+            }
         }
     }
 
@@ -37,8 +44,8 @@ public partial class booking_confirm : System.Web.UI.Page
                 {
                     if (dt.Rows[0]["Email"].ToString().Trim() != "")
                     {
-                        string fromMail = "booking.abrahamscourt@gmail.com";
-                        string fromPassword = "oebifvlldjerndfm";
+                        string fromMail = "abrahamscourt123@gmail.com";
+                        string fromPassword = "bmhpydveqcemxfsb";
 
                         MailMessage message = new MailMessage();
                         message.From = new MailAddress(fromMail);

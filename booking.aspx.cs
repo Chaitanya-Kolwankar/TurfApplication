@@ -101,7 +101,7 @@ public partial class booking : System.Web.UI.Page
                 MailMessage message = new MailMessage();
                 message.From = new MailAddress(fromMail);
                 message.Subject = "Turf Booking At Abrahams Court";
-                message.To.Add(new MailAddress("kolwankarchaitanya@gmail.com"));
+                message.To.Add(new MailAddress("abrahamscourt123@gmail.com"));
                 message.Body = "<html> <head> <style> table { font-family: arial, sans-serif; border-collapse: collapse; width: 100%; } td, th { border: 1px solid #dddddd; text-align: left; padding: 8px; } tr:nth-child(even) { background-color: #dddddd; } </style> </head> <link rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css'> <body> <div class='container'> <h2>Booking Id : " + Booking_id + "</h2> <table><tr> <td>Name</td> <td>" + name + " </td> </tr><tr> <td>Phone</td> <td>" + Phone + " </td> </tr> <tr> <td>Location</td> <td>" + hidden_location.Value.Trim() + " </td> </tr> <tr> <td>Date</td> <td>" + hidden_date.Value.Trim() + " </td> </tr> <tr> <td>Type</td> <td>" + hidden_type.Value.Trim() + " </td> </tr> <tr> <td>From Time</td> <td>" + hidden_from_time.Value.Trim() + " </td> </tr> <tr> <td>To Time</td> <td>" + hidden_to_time.Value.Trim() + " </td> </tr> <tr> <td>Total Price</td> <td>" + hidden_price.Value.Trim() + " </td> </tr> <tr> <td>Advance Price</td> <td>" + Convert.ToInt32(adv_amt) + " </td> </tr> </table> <br> <div style='text-align:center'><h3> <a  href='https://abrahamscourt.runasp.net/booking_confirm.aspx?Booking_id=" + Booking_id + "'>Confirm</a> </h3></div> </div> </body> </html>";
                 message.IsBodyHtml = true;
                 var smtpClient = new SmtpClient("smtp.gmail.com")
