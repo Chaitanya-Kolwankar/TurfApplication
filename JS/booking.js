@@ -160,13 +160,29 @@ function handleDayClick(label) {
                     var data = JSON.parse(response.d);
                     if (data.length > 0) {
                         var row = data[0];
-                        $('.lbl_full_court').text(row.Full_price);
-                        $('.lbl_open_court').text(row.Open_price);
-                        $('.lbl_box_court').text(row.Box_price);
-                        $('#ContentPlaceHolder1_hidden_full').val(row.Full_price);
-                        $('#ContentPlaceHolder1_hidden_open').val(row.Open_price);
-                        $('#ContentPlaceHolder1_hidden_box').val(row.Box_price);
-                        $('#ContentPlaceHolder1_hidden_percent').val(row.Adv_price);
+                        if ($('#ContentPlaceHolder1_hidden_location').val() == 'East') {
+                            $('.lbl_full_court').text('--');
+                            $('.lbl_court_name_Full').text($('.lbl_court_name_Full').text() + ' (Comming Soon)');
+                            $('.lbl_court_name_Box').text($('.lbl_court_name_Box').text() + ' (Comming Soon)');
+                            $('.lbl_open_court').text(row.Open_price);
+                            $('.lbl_box_court').text('--');
+                            $('#ContentPlaceHolder1_hidden_full').val(row.Full_price);
+                            $('#ContentPlaceHolder1_hidden_open').val(row.Open_price);
+                            $('#ContentPlaceHolder1_hidden_box').val(row.Box_price);
+                            $('#ContentPlaceHolder1_hidden_percent').val(row.Adv_price);
+                        }
+                        else {
+                            $('.lbl_full_court').text(row.Full_price);
+                            $('.lbl_open_court').text(row.Open_price);
+                            $('.lbl_box_court').text(row.Box_price);
+                            $('.lbl_court_name_Full').text('Full Court');
+                            $('.lbl_court_name_Box').text('Box Court');
+                            $('#ContentPlaceHolder1_hidden_full').val(row.Full_price);
+                            $('#ContentPlaceHolder1_hidden_open').val(row.Open_price);
+                            $('#ContentPlaceHolder1_hidden_box').val(row.Box_price);
+                            $('#ContentPlaceHolder1_hidden_percent').val(row.Adv_price);
+                        }
+                        
                     }
                 } else {
                     $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
@@ -192,17 +208,21 @@ function handleDayClick(label) {
 //-------------------------Claender JS End ------------------------------------
 
 $('.princing-item').click(function (event) {
-
-    document.getElementById('type').classList.remove('fade-in');
-    document.getElementById('type').classList.add('fade-out');
-    document.getElementById('time').classList.remove('fade-out');
-    setTimeout(function () {
-        document.getElementById('type').style.display = 'none';
-        document.getElementById('time').style.display = 'block'
-        document.querySelector('.btn_previous').setAttribute('data-toggle', 'time');;
-        document.getElementById('card_tital').innerText = 'Select Time';
-    }, 500);
-    $('#ContentPlaceHolder1_hidden_type').val(event.currentTarget.id);
+    if ((event.currentTarget.id == 'Full' && $('#ContentPlaceHolder1_hidden_location').val() == 'East') || (event.currentTarget.id == 'Box' && $('#ContentPlaceHolder1_hidden_location').val() == 'East')) {
+        return;
+    }
+    else {
+        document.getElementById('type').classList.remove('fade-in');
+        document.getElementById('type').classList.add('fade-out');
+        document.getElementById('time').classList.remove('fade-out');
+        setTimeout(function () {
+            document.getElementById('type').style.display = 'none';
+            document.getElementById('time').style.display = 'block'
+            document.querySelector('.btn_previous').setAttribute('data-toggle', 'time');;
+            document.getElementById('card_tital').innerText = 'Select Time';
+        }, 500);
+        $('#ContentPlaceHolder1_hidden_type').val(event.currentTarget.id);
+    }
 });
 
 //-------------------------TimeTable JS ---------------------------------------

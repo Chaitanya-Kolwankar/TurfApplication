@@ -8,7 +8,7 @@
     <div class="card shadow">
         <div class="card-header border-bottom border-primary border-3 justify-content-center">
             <div class="row" style="padding-bottom: 14px;">
-                <div class="col-10" style="align-items: center;display: flex;">
+                <div class="col-10" style="align-items: center; display: flex;">
                     <h4>
                         <sapn id="card_tital">Select Location</sapn>
                     </h4>
@@ -48,13 +48,13 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                <div class="card text-center shadow shadow-lg" style="background-image: url('img/bg_3.jpg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="East">
+                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/bg_3.jpg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="East">
                                     <div class="card-body">
                                         <div style="height: 26vh;"></div>
                                     </div>
                                     <div class="card-footer p-2" style="border-radius: 20px 20px 0 0">
-                                        <h3 class=""><span class="fa fa-futbol-o"></span>&nbsp;East(Coming Soon)</h3>
-                                        <%--<sapn class="mt-3" style="font-size: small"><span class="fa fa-lg fa-map-marker"></span>&nbsp;&nbsp;<a href="https://www.google.com/maps/dir//Chakreshwar+talav,+opposite+coca+cola+distributor,+Nala+Sopara,+Maharashtra+401203/@19.4167956,72.7143704,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3be7ab9f55c887d1:0xaefff9e98691547d!2m2!1d72.7967721!2d19.4168142?entry=ttu" target="_blank">Chakreshwar Talav,Nala Sopara    &raquo;</a></sapn>--%>
+                                        <h3 class=""><span class="fa fa-futbol-o"></span>&nbsp;East</h3>
+                                        <sapn class="mt-3" style="font-size: small"><span class="fa fa-lg fa-map-marker"></span>&nbsp;&nbsp;<a href="https://www.google.com/maps/dir//Abrahams+Court+Trinity,+school,+behind+Yash+Vidya+Niketan,+Moregaon,+Ekvira+Darshan,+Virar+East,+Mumbai,+Virar,+Maharashtra+401303/@19.4381922,72.8253843,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3be7a9ae5a3eb9b5:0x10a5928b3530318f!2m2!1d72.8253843!2d19.4381922?entry=ttu" target="_blank">Chakreshwar Talav,Nala Sopara    &raquo;</a></sapn>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +92,8 @@
                                                 </svg>
                                             </div>
                                             <div class="card-body mt-0 shadow-lg">
-                                                <h2 class="text-primary">Full Court</h2>
+                                                <h2 class="text-primary">
+                                                    <label class="lbl_court_name_Full">Full Court</label></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -116,7 +117,8 @@
                                                 </svg>
                                             </div>
                                             <div class="card-body bg-white mt-0 shadow ">
-                                                <h2 class="text-primary">Open Court</h2>
+                                                <h2 class="text-primary">
+                                                    <label class="lbl_court_name_Open">Open Court</label></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +143,8 @@
                                                 </svg>
                                             </div>
                                             <div class="card-body bg-white mt-0 shadow">
-                                                <h2 class="text-primary">Box Court</h2>
+                                                <h2 class="text-primary">
+                                                    <label class="lbl_court_name_Box">Box Court</label></h2>
                                             </div>
                                         </div>
                                     </div>
@@ -316,7 +319,7 @@
             <div class="modal fade" id="Modal_qr" tabindex="-1" aria-labelledby="Modal_qrLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
-                        <div class="modal-dialog" >
+                        <div class="modal-dialog">
                             <div class="modal-content transparent-modal">
                                 <div class="modal-body align-content-center flex-container transparent-modal">
                                     <div class="card shadow">

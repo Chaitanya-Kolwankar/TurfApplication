@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -156,10 +157,13 @@ public partial class Admin_booking : System.Web.UI.Page
     protected void btn_edit_Click(object sender, EventArgs e)
     {
         GridViewRow gvRow = (GridViewRow)(sender as Control).Parent.Parent;
+        string date = ((Label)gvRow.FindControl("grdlbl_Date")).Text.Trim();
+        DateTime dateValue;
+        DateTime.TryParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue);
         txt_Bk_id.Text = ((Label)gvRow.FindControl("grdlbl_id")).Text.Trim();
         ddl_location.SelectedValue = ((Label)gvRow.FindControl("grdlbl_Location")).Text.Trim();
         ddl_type.SelectedValue = ((Label)gvRow.FindControl("grdlbl_Type")).Text.Trim();
-        txt_bk_date.Text = Convert.ToDateTime(((Label)gvRow.FindControl("grdlbl_Date")).Text.Trim()).ToString("yyyy-MM-dd");
+        txt_bk_date.Text = dateValue.ToString("yyyy-MM-dd");
         txt_from_time.Text = ((Label)gvRow.FindControl("grdlbl_Form_time")).Text.Trim();
         txt_to_time.Text = ((Label)gvRow.FindControl("grdlbl_To_time")).Text.Trim();
         txt_adv_amt.Text = ((Label)gvRow.FindControl("grdlbl_Adv_amount")).Text.Trim();
