@@ -48,13 +48,13 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/bg_3.jpg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="East">
+                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/bg_5.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="East">
                                     <div class="card-body">
                                         <div style="height: 26vh;"></div>
                                     </div>
                                     <div class="card-footer p-2" style="border-radius: 20px 20px 0 0">
                                         <h3 class=""><span class="fa fa-futbol-o"></span>&nbsp;East</h3>
-                                        <sapn class="mt-3" style="font-size: small"><span class="fa fa-lg fa-map-marker"></span>&nbsp;&nbsp;<a href="https://www.google.com/maps/dir//Abrahams+Court+Trinity,+school,+behind+Yash+Vidya+Niketan,+Moregaon,+Ekvira+Darshan,+Virar+East,+Mumbai,+Virar,+Maharashtra+401303/@19.4381922,72.8253843,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3be7a9ae5a3eb9b5:0x10a5928b3530318f!2m2!1d72.8253843!2d19.4381922?entry=ttu" target="_blank">Chakreshwar Talav,Nala Sopara    &raquo;</a></sapn>
+                                        <sapn class="mt-3" style="font-size: small"><span class="fa fa-lg fa-map-marker"></span>&nbsp;&nbsp;<a href="https://www.google.com/maps/dir//Abrahams+Court+Trinity,+school,+behind+Yash+Vidya+Niketan,+Moregaon,+Ekvira+Darshan,+Virar+East,+Mumbai,+Virar,+Maharashtra+401303/@19.4381922,72.8253843,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3be7a9ae5a3eb9b5:0x10a5928b3530318f!2m2!1d72.8253843!2d19.4381922?entry=ttu" target="_blank">Yash Vidya Niketan,Virar East    &raquo;</a></sapn>
                                     </div>
                                 </div>
                             </div>
