@@ -182,7 +182,7 @@ function handleDayClick(label) {
                             $('#ContentPlaceHolder1_hidden_box').val(row.Box_price);
                             $('#ContentPlaceHolder1_hidden_percent').val(row.Adv_price);
                         }
-                        
+
                     }
                 } else {
                     $.notify('Something Went Wrong', { color: '#802019', background: '#ffb3b3', blur: 0.2, delay: 0 });
@@ -284,7 +284,7 @@ function genatretime(durationHours, durationMinutes) {
     $.ajax({
         type: "POST",
         url: "booking.aspx/gte_blocked_time",
-        data: '{date:"' + $('#ContentPlaceHolder1_hidden_date').val() + '",turf_location:"' + $('#ContentPlaceHolder1_hidden_location').val() + '"}',
+        data: '{date:"' + $('#ContentPlaceHolder1_hidden_date').val() + '",turf_location:"' + $('#ContentPlaceHolder1_hidden_location').val() + '",turf_type:"' + $('#ContentPlaceHolder1_hidden_type').val() + '"}',
         contentType: "application/json; charset=utf-8",
         async: false,
         success: function (response) {
@@ -385,8 +385,8 @@ $('.btn_previous').click(function () {
     var dataToggle = $(this).attr('data-toggle');
     if (dataToggle === 'location') {
         return;
-        
-    } else if (dataToggle === 'calender'){
+
+    } else if (dataToggle === 'calender') {
         document.getElementById('calender').classList.remove('fade-in');
         document.getElementById('calender').classList.add('fade-out');
         document.getElementById('location').classList.remove('fade-out');

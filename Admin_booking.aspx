@@ -262,8 +262,8 @@
         clickable();
 
         function loadtimepicker() {
-            $('#<%= txt_from_time.ClientID %>').timepicker({ timeFormat: 'H:i', step: 30 });
-            $('#<%= txt_to_time.ClientID %>').timepicker({ timeFormat: 'H:i', step: 30 });
+            $('#<%= txt_from_time.ClientID %>').timepicker({ timeFormat: 'H:i', interval: 30});
+            $('#<%= txt_to_time.ClientID %>').timepicker({ timeFormat: 'H:i', step: 30, show2400: true });
         }
     </script>
 

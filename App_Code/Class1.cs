@@ -188,10 +188,10 @@ public class Class1
         return dt_jserializer(dt);
     }
 
-    public string gte_blocked_time(string date, string turf_location)
+    public string gte_blocked_time(string date, string turf_location, string turf_type)
     {
         string date_frm = Convert.ToDateTime(date).ToString("yyyy-MM-dd");
-        DataTable dt = fillDataTable("select distinct Form_time,To_time from Turf_details where Turf_date=convert(varchar,'" + date_frm + "',103) and (confirm_flag=1 or curr_dt >= DATEADD(HOUR, -1, GETDATE())) and Turf_location='" + turf_location + "' and del_flag=0 order by Form_time,To_time");
+        DataTable dt = fillDataTable("select distinct Form_time,To_time from Turf_details where Turf_date=convert(varchar,'" + date_frm + "',103) and (confirm_flag=1 or curr_dt >= DATEADD(HOUR, -1, GETDATE())) and Turf_location='" + turf_location + "' and Turf_type='" + turf_type + "' and del_flag=0 order by Form_time,To_time");
         return dt_jserializer(dt);
     }
 

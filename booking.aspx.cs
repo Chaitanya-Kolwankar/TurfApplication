@@ -135,9 +135,9 @@ public partial class booking : System.Web.UI.Page
     }
 
     [WebMethod]
-    public static string gte_blocked_time(string date, string turf_location)
+    public static string gte_blocked_time(string date, string turf_location,string turf_type)
     {
         Class1 cls = new Class1();
-        return cls.gte_blocked_time(date, turf_location);
+        return cls.gte_blocked_time(date, turf_location,turf_type);
     }
 }
