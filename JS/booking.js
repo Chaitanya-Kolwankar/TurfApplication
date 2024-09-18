@@ -438,6 +438,9 @@ $('.btn_previous').click(function () {
             $('.lbl_time').val("");
             $('.lbl_totalPrice').val("");
             $('#ContentPlaceHolder1_hidden_price').val("");
+            $('#ContentPlaceHolder1_hidden_total_time').val('');
+            $('#ContentPlaceHolder1_hidden_from_time').val('');
+            $('#ContentPlaceHolder1_hidden_to_time').val('');
             document.getElementById('user').style.display = 'none';
             document.getElementById('time').style.display = 'block';
             document.getElementById('card_tital').innerText = 'Select Time';
