@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
-                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/bg_5.jpeg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="East">
+                                <div class="card text-center shadow shadow-lg turf-location" style="background-image: url('img/bg_6.jpg'); background-size: cover; border-radius: 20px 20px 20px 20px" id="East">
                                     <div class="card-body">
                                         <div style="height: 26vh;"></div>
                                     </div>
