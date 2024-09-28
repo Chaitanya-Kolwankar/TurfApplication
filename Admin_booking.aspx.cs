@@ -117,18 +117,20 @@ public partial class Admin_booking : System.Web.UI.Page
         }
         else
         {
+            to_time = to_time == "24:00" ? "23:59" : to_time;
             DateTime start, end;
             DateTime.TryParse(from_time, out start);
             DateTime.TryParse(to_time, out end);
             TimeSpan totalTime = end.TimeOfDay.Subtract(start.TimeOfDay);
+            totalTime = totalTime.Minutes == 59 ? totalTime.Add(new TimeSpan(0, 1, 0)) : totalTime;
             int totalHours = totalTime.Hours;
             int totalMinutes = totalTime.Minutes;
+
             if (totalMinutes % 30 != 0)
             {
                 totalMinutes = (totalMinutes / 30) * 30 + 30;
             }
             string time = (totalHours < 10 ? "0" + totalHours.ToString() : totalHours.ToString()) + ":" + (totalMinutes < 10 ? "0" + totalMinutes.ToString() : totalMinutes.ToString());
-            return;
             DataTable dt = cls.fillDataTable("select [dbo].[GenerateIncrementedValue]()");
             string Booking_id = dt.Rows[0][0].ToString().Trim();
             string qyr = "";
@@ -141,10 +143,10 @@ public partial class Admin_booking : System.Web.UI.Page
                 Booking_id = txt_Bk_id.Text.Trim();
                 qyr = "update Turf_details set Name='" + name + "',Phone=" + phone + ",Email='" + mail + "',Turf_location='" + location + "',Turf_type='" + type + "',Turf_date='" + date + "',Form_time='" + from_time + "',To_time='" + to_time + "',Total_time='" + time + "',Total_amount=" + amount + ",Adv_amount=" + Advance + ",confirm_flag=" + status + ",mod_dt=GETDATE() where Booking_id='" + Booking_id + "';";
             }
-                
+
             if (cls.DMLqueries(qyr))
             {
-                
+
                 ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "anything", "$.notify('Booking Details Saved Successfully', { color: '#006600', background: '#ccffcc', blur: 0.2, delay: 0 });$('#Modal_add').modal('hide');", true);
                 load_grd();
             }
